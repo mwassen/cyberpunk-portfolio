@@ -14,5 +14,6 @@ body {
 
 svg {
     height: 80vh;
+    opacity: 0.9;
     mix-blend-mode: screen;
 }
