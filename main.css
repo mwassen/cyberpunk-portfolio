@@ -14,6 +14,7 @@ body {
 
 #logo {
     height: 80vh;
+    width: auto;
     opacity: 0.9;
     mix-blend-mode: screen;
 }
