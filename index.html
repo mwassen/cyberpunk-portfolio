@@ -3,10 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>mswsn space</title>
+    <title>mswsn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
 </head>
 <body>
     <div id="templogo">
@@ -24,4 +23,19 @@
         </svg>
     </div>
 </body>
+<script>
+    let logo = document.getElementById("templogo");
+    let colors = ["black", "green", "white", "#E25822"];
+    let iter = 0;
+
+    setInterval(() => {
+        logo.style.fill = colors[iter % 4]
+        iter++;
+    }, 1);
+
+
+    // while (true) {
+    //     set
+    // }
+</script>
 </html>
