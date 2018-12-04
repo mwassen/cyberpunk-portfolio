@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
-    <div id="templogo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51.62 201.91">
+    <div id="logocont">
+        <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51.62 201.91">
             <title>logo</title>
                 <g id="Layer_2" data-name="Layer 2">
                     <g id="Layer_1-2" data-name="Layer 1">
@@ -24,13 +24,20 @@
     </div>
 </body>
 <script>
-    let logo = document.getElementById("templogo");
+    let logo = document.getElementById("logo");
     let colors = ["#9a150d", "#ee9324", "rgba(255,0,0,0)"];
-    let iter = 0;
+    let sizes = ["50vh", "60vh", "70vh", "80vh"];
+    let iterA = 0;
+    let iterB = 0;
 
     setInterval(() => {
-        logo.style.fill = colors[iter % 4]
-        iter++;
-    }, 10);
+        logo.style.fill = colors[iterA % 3];
+        iterA++;
+    }, 15);
+
+    setInterval(() => {
+        logo.style.height = sizes[iterB % 4];
+        iterB++;
+    }, 500);
 </script>
 </html>
