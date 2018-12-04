@@ -1,3 +1,3 @@
 # Personal Portfolio
 
-Currently empty portfolio, will soon be updated.
+Currently placeholder portfolio, will soon be updated.

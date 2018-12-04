@@ -26,18 +26,17 @@
 <script>
     let logo = document.getElementById("logo");
     let colors = ["#9a150d", "#ee9324", "rgba(255,0,0,0)"];
-    let sizes = ["50vh", "60vh", "70vh", "80vh"];
     let iterA = 0;
-    let iterB = 0;
+    // let iterB = 0;
 
     setInterval(() => {
         logo.style.fill = colors[iterA % 3];
         iterA++;
     }, 15);
 
-    setInterval(() => {
-        logo.style.height = sizes[iterB % 4];
-        iterB++;
-    }, 500);
+    // setInterval(() => {
+    //     logo.setAttribute("transform", "rotate(" + iterB + ")");
+    //     iterB += 1;
+    // }, 10);
 </script>
 </html>
