@@ -1,0 +1,9 @@
+body {
+    margin: 0px 0px 0px 0px;
+}
+
+#templogo {
+    display: flex;
+    align-content: center;
+    
+}
