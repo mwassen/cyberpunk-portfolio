@@ -1,6 +1,7 @@
 body {
     margin: 0px 0px 0px 0px;
     overflow: hidden;
+    background-color: black;
 }
 
 #templogo {
