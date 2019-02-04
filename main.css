@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	display: grid;
 	grid-template-columns: minmax(30px, 1fr) minmax(200px, 550px) minmax(30px, 1fr);
-	grid-template-rows: 20vh 1fr;
+	/* grid-template-rows: 20vh 1fr; */
 	background-color: royalblue;
 }
 
@@ -13,7 +13,12 @@ canvas {
 
 #main-container {
 	grid-column: 2;
-	grid-row: 2;
+	height: 80vh;
+	/* grid-row: 2; */
+	display: flex;
+
+	align-items: center;
+
 	font-family: 'IBM Plex Mono', monospace;
 	font-size: 18px;
 	color: hsl(0, 0%, 100%);
