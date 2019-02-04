@@ -1,9 +1,9 @@
 body {
 	margin: 0;
 	display: grid;
-	grid-template-columns: 1fr 50vw 1fr;
-	grid-template-rows: 10vh 1fr;
-	background-color: floralwhite;
+	grid-template-columns: minmax(30px, 1fr) minmax(200px, 550px) minmax(30px, 1fr);
+	grid-template-rows: 20vh 1fr;
+	background-color: royalblue;
 }
 
 canvas { 
@@ -15,17 +15,23 @@ canvas {
 	grid-column: 2;
 	grid-row: 2;
 	font-family: 'Open Sans', sans-serif;
-	color: hsl(0, 0%, 25%);
+	font-size: 18px;
+	color: hsl(0, 0%, 97%);
 }
 
 .piece-title {
 	font-size: 40px;
 }
 
-h1 h2 {
-	font-family: 'IBM Plex Sans', sans-serif;
+h1, h2 {
+	font-family: 'IBM Plex Sans';
+	font-style: italic;
 }
 
 p {
 	font-family: 'Open Sans', sans-serif;
+}
+
+a {
+	color: whitesmoke;
 }
