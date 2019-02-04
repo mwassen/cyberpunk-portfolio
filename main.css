@@ -14,11 +14,8 @@ canvas {
 #main-container {
 	grid-column: 2;
 	height: 80vh;
-	/* grid-row: 2; */
 	display: flex;
-
 	align-items: center;
-
 	font-family: 'IBM Plex Mono', monospace;
 	font-size: 18px;
 	color: hsl(0, 0%, 100%);
@@ -32,10 +29,10 @@ svg {
 	width: 200px;
 }
 
-h1, h2 {
-	font-size: 40px;
+a {
+	color: hsl(0, 0%, 100%);
 }
 
-a {
-	color: whitesmoke;
+a:hover {
+	color: #f58025;
 }
