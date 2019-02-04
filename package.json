@@ -20,7 +20,5 @@
     "url": "https://github.com/mwassen/mwassen.github.io/issues"
   },
   "homepage": "https://github.com/mwassen/mwassen.github.io#readme",
-  "dependencies": {
-    "three": "^0.100.0"
-  }
+  "dependencies": {}
 }

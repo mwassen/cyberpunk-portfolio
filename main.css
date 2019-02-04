@@ -14,22 +14,18 @@ canvas {
 #main-container {
 	grid-column: 2;
 	grid-row: 2;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'IBM Plex Mono', monospace;
 	font-size: 18px;
-	color: hsl(0, 0%, 97%);
+	color: hsl(0, 0%, 100%);
 }
 
 .piece-title {
-	font-size: 40px;
+	font-size: 50px;
 }
 
 h1, h2 {
-	font-family: 'IBM Plex Sans';
-	font-style: italic;
-}
-
-p {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Permanent Marker', cursive;
+	font-size: 40px;
 }
 
 a {
