@@ -37,8 +37,10 @@ svg:hover {
 
 a {
 	color: hsl(0, 0%, 100%);
+	transition: all 0.2s ease;
 }
 
 a:hover {
 	color: #f58025;
+	transition: all 0.4s ease;
 }
