@@ -26,8 +26,14 @@ canvas {
 }
 
 svg {
+	fill: white;
 	width: 200px;
 }
+
+/* 
+svg:hover {
+	fill: #f58025;
+} */
 
 a {
 	color: hsl(0, 0%, 100%);
