@@ -1,0 +1,106 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 17956,
+            "max" : [
+                0.015099198557436466,
+                0.0005766621907241642,
+                0.002816981403157115
+            ],
+            "min" : [
+                -0.014393624849617481,
+                -0.0005766634712927043,
+                -0.00254421797581017
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 17956,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 17956,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 26484,
+            "type" : "SCALAR"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 I/O",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 215472,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 215472,
+            "byteOffset" : 215472
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 143648,
+            "byteOffset" : 430944
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 52968,
+            "byteOffset" : 574592
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 627560,
+            "uri" : "mswsn3d.bin"
+        }
+    ],
+    "extensions" : {},
+    "meshes" : [
+        {
+            "name" : "CUCurve.006",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 1,
+                        "POSITION" : 0,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Curve.006",
+            "scale" : [
+                370.987060546875,
+                370.987060546875,
+                370.987060546875
+            ]
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ]
+}
