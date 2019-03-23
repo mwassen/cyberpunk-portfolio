@@ -1,7 +1,19 @@
+// IMPORT JS
 import * as THREE from "three";
 import GLTFLoader from "three-gltf-loader";
+
+// IMPORT CSS
 import "../css/main.css";
 
+// IMPORT MODEL
+import dmodel from "../assets/mswsn3d.glb";
+// import "../assets/mswsn3d.bin";
+
+// IMPORT SHADERS
+import vShader from "../shaders/vertex1.glsl";
+import fShader from "../shaders/fragment1.glsl";
+
+// Setup
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera();
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -11,8 +23,6 @@ updateScene();
 // EVENTS
 window.addEventListener("resize", updateScene);
 window.addEventListener("scroll", updateCamera);
-
-// scene.add(camera);
 
 // document.body.appendChild(renderer.domElement);
 document.getElementById("threeHead").appendChild(renderer.domElement);
@@ -34,19 +44,18 @@ const myShader = new THREE.ShaderMaterial({
     resolution: { value: new THREE.Vector2() }
   },
 
-  vertexShader: require("../shaders/vertex1.glsl"),
-  fragmentShader: require("../shaders/fragment1.glsl")
+  vertexShader: vShader,
+  fragmentShader: fShader
 });
 
 // MODELS
 const loader = new GLTFLoader();
 loader.load(
-  "mswsn3d.gltf",
+  dmodel,
   gltf => {
     logoMesh = gltf.scene.children[0];
     logoMesh.material = myShader;
     logoMesh.scale.set(70, 70, 70);
-    // logoMesh.rotation.x = Math.PI / 2;
     scene.add(logoMesh);
   },
   function(xhr) {
