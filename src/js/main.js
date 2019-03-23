@@ -6,7 +6,7 @@ import GLTFLoader from "three-gltf-loader";
 import "../css/main.css";
 
 // IMPORT MODEL
-import dmodel from "../assets/mswsn3d.glb";
+import logo3d from "../assets/mswsn3d.glb";
 
 // IMPORT SHADERS
 import vShader from "../shaders/vertex1.glsl";
@@ -50,7 +50,7 @@ const myShader = new THREE.ShaderMaterial({
 // MODELS
 const loader = new GLTFLoader();
 loader.load(
-  dmodel,
+  logo3d,
   gltf => {
     logoMesh = gltf.scene.children[0];
     logoMesh.material = myShader;
