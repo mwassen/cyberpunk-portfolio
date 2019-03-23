@@ -10,5 +10,5 @@ void main () {
 
 	vec3 color = mix(colorA, colorB, sin(time * 0.2 + cos(vUv.x)));
 
-	gl_FragColor = vec4(color, 0.8 * (sin(vUv.y) +2.0 ));
+	gl_FragColor = vec4(color, 0.8 * (sin(vUv.y * 10.0) + 2.0 ));
 }

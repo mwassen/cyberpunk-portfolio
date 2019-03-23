@@ -1,6 +1,5 @@
 node_modules/
 reference/
-assets/
 dist/
 .cache/
 .prettierrc

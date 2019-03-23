@@ -55,7 +55,7 @@ loader.load(
   logo3d,
   gltf => {
     logoMesh = gltf.scene.children[0];
-    logoMesh.material = testShader;
+    logoMesh.material = myShader;
     logoMesh.scale.set(70, 70, 70);
     scene.add(logoMesh);
   },
