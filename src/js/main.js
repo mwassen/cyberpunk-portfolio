@@ -47,13 +47,15 @@ const myShader = new THREE.ShaderMaterial({
   fragmentShader: fShader
 });
 
+const testShader = new THREE.MeshPhysicalMaterial({});
+
 // MODELS
 const loader = new GLTFLoader();
 loader.load(
   logo3d,
   gltf => {
     logoMesh = gltf.scene.children[0];
-    logoMesh.material = myShader;
+    logoMesh.material = testShader;
     logoMesh.scale.set(70, 70, 70);
     scene.add(logoMesh);
   },
