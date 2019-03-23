@@ -7,7 +7,6 @@ import "../css/main.css";
 
 // IMPORT MODEL
 import dmodel from "../assets/mswsn3d.glb";
-// import "../assets/mswsn3d.bin";
 
 // IMPORT SHADERS
 import vShader from "../shaders/vertex1.glsl";
