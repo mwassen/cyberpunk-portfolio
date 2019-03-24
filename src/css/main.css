@@ -1,7 +1,12 @@
 body {
   margin: 0px 0px 0px 0px;
+  overflow: hidden;
 }
 /* 
 .content {
   height: 2000px;
 } */
+
+#threeHead {
+  margin: 0px 0px 0px 0px;
+}

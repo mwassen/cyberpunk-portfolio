@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/mwassen/mwassen.github.io#readme",
   "dependencies": {
+    "dat.gui": "^0.7.5",
     "three": "^0.102.1",
     "three-gltf-loader": "^1.102.0"
   },

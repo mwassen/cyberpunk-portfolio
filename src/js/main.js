@@ -1,6 +1,7 @@
 // IMPORT JS
 import * as THREE from "three";
 import GLTFLoader from "three-gltf-loader";
+import * as dat from "dat.gui";
 
 // IMPORT CSS
 import "../css/main.css";
@@ -15,6 +16,9 @@ import fShader from "../shaders/fragment1.glsl";
 // Setup
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera();
+const zoom1 = { value: 1.0 };
+// const gui = new dat.GUI();
+// gui.add(zoom1, "value", 0.01, 5, 0.0001).onChange(updateScene);
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
 updateScene();
@@ -89,7 +93,7 @@ function updateScene() {
   const aspect = window.innerWidth / window.innerHeight;
 
   // Ortho zoom
-  const zoom = 1.0;
+  const zoom = zoom1.value;
 
   // Bounds
   camera.left = -zoom * aspect;
