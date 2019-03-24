@@ -16,10 +16,14 @@ import fShader from "../shaders/fragment1.glsl";
 // Setup
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera();
-const zoom1 = { value: 1.0 };
-const gui = new dat.GUI();
-gui.add(zoom1, "value", 0.01, 5, 0.0001).onChange(updateScene);
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+// State and Dev GUI
+const state = { cZoom: 1.0 };
+if (process.env.NODE_ENV === "development") {
+  const gui = new dat.GUI();
+  gui.add(state, "cZoom", 0.01, 5, 0.0001).onChange(updateScene);
+}
 
 updateScene();
 
@@ -93,7 +97,7 @@ function updateScene() {
   const aspect = window.innerWidth / window.innerHeight;
 
   // Ortho zoom
-  const zoom = zoom1.value;
+  const zoom = state.cZoom;
 
   // Bounds
   camera.left = -zoom * aspect;
