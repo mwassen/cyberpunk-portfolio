@@ -17,8 +17,8 @@ import fShader from "../shaders/fragment1.glsl";
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera();
 const zoom1 = { value: 1.0 };
-// const gui = new dat.GUI();
-// gui.add(zoom1, "value", 0.01, 5, 0.0001).onChange(updateScene);
+const gui = new dat.GUI();
+gui.add(zoom1, "value", 0.01, 5, 0.0001).onChange(updateScene);
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
 updateScene();
@@ -41,7 +41,7 @@ light2.lookAt(new THREE.Vector3());
 let logoMesh;
 
 // SHADERS
-const myShader = new THREE.ShaderMaterial({
+const myShader = new THREE.RawShaderMaterial({
   uniforms: {
     time: { value: 1.0 },
     resolution: { value: new THREE.Vector2() }
