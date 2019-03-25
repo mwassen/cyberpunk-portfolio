@@ -19,7 +19,7 @@ void main () {
 	vNormal = normal;
 
 	vec3 offset = position;
-	float dist =  (sin(time / 5.0) + 1.0) * 0.0002;
+	float dist =  (sin(time / 5.0) + 1.0) * 0.00005;
 
 	offset.xyz += normal * dist;
 

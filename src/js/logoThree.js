@@ -1,25 +1,24 @@
-// IMPORT JS
+// IMPORTS
 import * as THREE from "three";
 import GLTFLoader from "three-gltf-loader";
 import * as dat from "dat.gui";
 
-// IMPORT CSS
 import "../css/main.css";
 
-// IMPORT MODEL
 import logo3d from "../assets/mswsn3d.glb";
 
-// IMPORT SHADERS
 import vShader from "../shaders/vertex1.glsl";
 import fShader from "../shaders/fragment1.glsl";
 
-// Setup
+// SETUP
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera();
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
-// State and Dev GUI
+// State for use in GUI and application
 const state = { cZoom: 1.0 };
+
+// GUI, only enabled in development
 if (process.env.NODE_ENV === "development") {
   const gui = new dat.GUI();
   gui.add(state, "cZoom", 0.01, 5, 0.0001).onChange(updateScene);
@@ -32,7 +31,7 @@ window.addEventListener("resize", updateScene);
 window.addEventListener("scroll", updateCamera);
 
 // document.body.appendChild(renderer.domElement);
-document.getElementById("threeHead").appendChild(renderer.domElement);
+document.getElementById("three").appendChild(renderer.domElement);
 
 // LIGHTS
 const light1 = new THREE.AmbientLight(0xffffff, 0.7);

@@ -6,11 +6,15 @@ varying vec3 vNormal;
 varying vec3 nposition;
 
 void main () {
-	// vec3 color = vec3(sin(time) + 1.0);
-	vec3 colorA = vec3(0.7, (sin(time / 2.0 * nposition.z) + 1.5) * 0.4, 0.5);
-	vec3 colorB = vec3(nposition.y / 2.0, 0.5, sin(time / 10.0) + 1.5);
 
-	vec3 color = mix(colorA, colorB, sin(time / 10.0 + cos(nposition.z)));
 
-	gl_FragColor = vec4(color, 1.0 );
+
+
+
+	vec4 colorA = vec4(0.02, 0.05, (sin(time / vNormal.y) + 0.5) * 0.4, sin((vNormal.y * nposition.x) / time * 0.01 ) + 0.5);
+	vec4 colorB = vec4(sin((vNormal.y * nposition.x) / time) + 0.5, 0.2, 1.0, (sin((vNormal.y * nposition.x) / time * 0.01) + 0.5) * 5.0);
+
+	vec4 color = mix(colorA, colorB, sin((time * vNormal.y) / 10.0 ));
+
+	gl_FragColor = color;
 }

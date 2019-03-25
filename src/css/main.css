@@ -1,12 +1,35 @@
+html {
+  background: black;
+}
+
 body {
   margin: 0px 0px 0px 0px;
-  overflow: hidden;
+  background-color: black;
 }
-/* 
-.content {
-  height: 2000px;
-} */
 
-#threeHead {
+#main-container {
+  height: 2000px;
+  width: 100vw;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  mix-blend-mode: difference;
+  font-family: "Roboto Mono", monospace;
+}
+
+#written-content {
+  width: 85vw;
+  max-width: 500px;
+}
+
+#buffer {
+  height: 100vh;
+}
+
+#three {
+  position: fixed;
+  z-index: 0;
   margin: 0px 0px 0px 0px;
 }
