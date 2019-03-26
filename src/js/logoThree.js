@@ -214,6 +214,7 @@ function animate() {
   // Initial glitch
   if (frame == 75) {
     glitchPass.goWild = false;
+    if (window.scrollY != 0) glitchPass.enabled = false;
   } else if (frame == 150 && window.scrollY == 0) scrollSvg.style.opacity = 1;
 
   myShader.uniforms.time.value += 0.1;
