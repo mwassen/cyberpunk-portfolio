@@ -7,26 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto+Mono"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900"
       rel="stylesheet"
     />
-
-    <!-- <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="./css/main.css"
-    /> -->
   </head>
   <body>
     <div id="three"></div>
-
     <div id="buffer">
-      <svg
-        id="scroll-down"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 21.2 23"
-      >
+      <svg id="scroll-down" viewBox="0 0 21.2 23">
         <polygon
           points="10.6 18.8 2.2 10.3 0 12.5 10.6 23 21.2 12.4 19 10.3 10.6 18.8"
         />
@@ -39,10 +27,10 @@
       <div id="written-content">
         <div id="blurb">
           <h1>Marcus Wassén</h1>
-          <h3>
+          <div id="bio">
             I'm a 27 year old developer focused on front-end and generative
-            design, from Gothenburg, Sweden.
-          </h3>
+            design, from Gothenburg, Sweden. Hyper Island alumni.
+          </div>
           <div id="personal-links">
             <a href="https://github.com/mwassen" target="_blank">github</a> ||
             <!-- prettier-ignore -->
@@ -55,17 +43,21 @@
           <h1>Work</h1>
           <div class="work-project">
             <h2>Tape Hiss</h2>
-            <p></p>
+            <p>
+              Mangle and record tape loops in this game/sonic experiment/thing.
+            </p>
+            <div class="frameworks">:: Pixi.JS, Tone ::</div>
           </div>
           <div class="work-project">
             <h2>Music Forecast</h2>
             <p></p>
+            <div class="frameworks">:: React, D3, Node ::</div>
           </div>
         </div>
         <div id="about"></div>
-        <div id="contact">
+        <!-- <div id="contact">
           <a href="mailto:marcuswassen@gmail.com" target="_blank">email</a>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>

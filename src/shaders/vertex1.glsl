@@ -5,6 +5,7 @@ attribute vec2 uv;
 attribute vec3 normal;
 
 uniform float time;
+uniform float scroll;
 uniform mat4 projectionMatrix;
 uniform mat4 modelViewMatrix;
 

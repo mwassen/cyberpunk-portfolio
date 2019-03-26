@@ -1,24 +1,32 @@
 // IMPORTS
-import * as THREE from "three";
-import {
-  WebGL,
-  RenderPass,
-  ShaderPass,
-  FXAAShader,
-  UnrealBloomPass,
-  EffectComposer,
-  GLTFLoader,
-  DigitalGlitch,
-  GlitchPass,
-  SSAOPass
-} from "three-full";
+
+// THREE stuff - split for tree shaking
+import { Scene } from "three-full/sources/scenes/Scene";
+import { OrthographicCamera } from "three-full/sources/cameras/OrthographicCamera";
+import { WebGLRenderer } from "three-full/sources/renderers/WebGLRenderer";
+import { RawShaderMaterial } from "three-full/sources/materials/RawShaderMaterial";
+import { Vector2 } from "three-full/sources/math/Vector2";
+import { Vector3 } from "three-full/sources/math/Vector3";
+import { WebGL } from "three-full/sources/helpers/WebGL";
+import { RenderPass } from "three-full/sources/postprocessing/RenderPass";
+import { ShaderPass } from "three-full/sources/postprocessing/ShaderPass";
+import { GlitchPass } from "three-full/sources/postprocessing/GlitchPass";
+import { UnrealBloomPass } from "three-full/sources/postprocessing/UnrealBloomPass";
+import { EffectComposer } from "three-full/sources/postprocessing/EffectComposer";
+import { FXAAShader } from "three-full/sources/shaders/FXAAShader";
+import { GLTFLoader } from "three-full/sources/loaders/GLTFLoader";
+
+// Dev Stuff
 import * as dat from "dat.gui";
 import Stats from "stats-js";
 
+// CSS
 import "../css/main.css";
 
+// 3D Model
 import logo3d from "../assets/mswsn3d.glb";
 
+// Own Shaders
 import vShader from "../shaders/vertex1.glsl";
 import fShader from "../shaders/fragment1.glsl";
 
@@ -27,12 +35,25 @@ if (WebGL.isWebGLAvailable() === false) {
 }
 
 // SETUP
-const scene = new THREE.Scene();
-const camera = new THREE.OrthographicCamera();
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+const scene = new Scene();
+const camera = new OrthographicCamera();
+const renderer = new WebGLRenderer({ alpha: true, antialias: false });
+
+// Window sizing
+let width = window.innerWidth;
+let height = window.innerHeight;
 
 // DOM references
 const scrollSvg = document.getElementById("scroll-down");
+
+// const accelerometer = new Accelerometer({ frequency: 60 });
+
+// accelerometer.addEventListener("reading", e => {
+//   console.log("Acceleration along the X-axis " + accelerometer.x);
+//   console.log("Acceleration along the Y-axis " + accelerometer.y);
+//   console.log("Acceleration along the Z-axis " + accelerometer.z);
+// });
+// accelerometer.start();
 
 // State for use in GUI and application
 const state = {
@@ -91,11 +112,11 @@ if (process.env.NODE_ENV === "development") {
 let logoMesh;
 
 // SHADERS
-const myShader = new THREE.RawShaderMaterial({
+const myShader = new RawShaderMaterial({
   uniforms: {
     time: { value: 1.0 },
     scroll: { value: 0.0 },
-    resolution: { value: new THREE.Vector2() }
+    resolution: { value: new Vector2() }
   },
 
   vertexShader: vShader,
@@ -104,7 +125,7 @@ const myShader = new THREE.RawShaderMaterial({
 
 // EFFECTS
 const bloomPass = new UnrealBloomPass(
-  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  new Vector2(width, height),
   1.5,
   0.4,
   0.85
@@ -135,27 +156,23 @@ fxaaPass.renderToScreen = true;
 const pixelRatio = renderer.getPixelRatio();
 const uniforms = fxaaPass.material.uniforms;
 
-uniforms["resolution"].value.x = 1 / (window.innerWidth * pixelRatio);
-uniforms["resolution"].value.y = 1 / (window.innerHeight * pixelRatio);
+uniforms["resolution"].value.x = 1 / (width * pixelRatio);
+uniforms["resolution"].value.y = 1 / (height * pixelRatio);
 
 const composer = new EffectComposer(renderer);
-composer.setSize(window.innerWidth, window.innerHeight);
+composer.setSize(width, height);
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
 composer.addPass(glitchPass);
-// composer.addPass(SSAOPass);
 composer.addPass(fxaaPass);
 
 // EVENTS
 window.addEventListener("resize", updateScene);
 window.addEventListener("scroll", updateCamera);
 
-// document.body.appendChild(renderer.domElement);
 document.getElementById("three").appendChild(renderer.domElement);
 
 updateScene();
-
-// const testShader = new THREE.MeshPhysicalMaterial({});
 
 // MODELS
 const loader = new GLTFLoader();
@@ -177,11 +194,11 @@ loader.load(
 );
 
 let frame = 0;
-
 function animate() {
   statsWidget.begin();
   requestAnimationFrame(animate);
 
+  // Hover animations on model
   if (logoMesh) {
     // logoMesh.rotation.x = Math.sin(frame / 100);
     // logoMesh.rotation.z = Math.sin(frame / 50);
@@ -189,8 +206,9 @@ function animate() {
     logoMesh.rotation.y = Math.sin(frame / 300) / 10;
     logoMesh.position.set(0, Math.sin(frame / 40) / 75, 0);
   }
+  // Initial glitch
   if (frame == 75) {
-    scrollSvg.style.opacity = 1;
+    if (window.scrollY == 0) scrollSvg.style.opacity = 1;
     glitchPass.goWild = false;
   }
 
@@ -203,8 +221,8 @@ function animate() {
 animate();
 
 function updateScene() {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  width = window.innerWidth;
+  height = window.innerHeight;
   const aspect = width / height;
 
   // Ortho zoom
@@ -222,7 +240,7 @@ function updateScene() {
 
   // Set position & look at world center
   camera.position.set(zoom, zoom, zoom);
-  camera.lookAt(new THREE.Vector3());
+  camera.lookAt(new Vector3());
 
   // Update the camera
   renderer.setSize(width, height);
@@ -237,16 +255,20 @@ function updateScene() {
 
 function updateCamera() {
   // state.cZoom = 1 - Math.sin(window.scrollY / 1000.0);
-  myShader.uniforms.scroll.value = scrollY;
+  myShader.uniforms.scroll.value = window.scrollY;
   camera.position.x = 1 - window.scrollY / 550.0;
   camera.position.y = 1 - window.scrollY / 550.0;
-  if (window.scrollY > 0 && scrollSvg.style.opacity != 0) {
+  if (window.scrollY > 0 && glitchPass.enabled && !glitchPass.goWild) {
     scrollSvg.style.opacity = 0;
     glitchPass.enabled = false;
   } else if (window.scrollY === 0) {
     scrollSvg.style.opacity = 1;
     glitchPass.enabled = true;
   }
-  camera.lookAt(new THREE.Vector3());
+  camera.lookAt(new Vector3());
   camera.updateProjectionMatrix();
 }
+
+window.onbeforeunload = function() {
+  window.scrollTo(0, 0);
+};
