@@ -24,8 +24,9 @@
   "homepage": "https://github.com/mwassen/mwassen.github.io#readme",
   "dependencies": {
     "dat.gui": "^0.7.5",
+    "stats-js": "^1.0.0",
     "three": "^0.102.1",
-    "three-gltf-loader": "^1.102.0"
+    "three-full": "^17.1.0"
   },
   "devDependencies": {
     "cssnano": "^4.1.10",
