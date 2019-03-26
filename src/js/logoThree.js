@@ -200,7 +200,9 @@ loader.load(
 
 let frame = 0;
 function animate() {
-  statsWidget.begin();
+  if (process.env.NODE_ENV === "development") {
+    statsWidget.begin();
+  }
   requestAnimationFrame(animate);
 
   // Hover animations on model
@@ -220,7 +222,9 @@ function animate() {
   myShader.uniforms.time.value += 0.1;
   frame++;
   composer.render();
-  statsWidget.end();
+  if (process.env.NODE_ENV === "development") {
+    statsWidget.end();
+  }
 }
 
 // updateCamera();
