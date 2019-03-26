@@ -94,6 +94,7 @@ let logoMesh;
 const myShader = new THREE.RawShaderMaterial({
   uniforms: {
     time: { value: 1.0 },
+    scroll: { value: 0.0 },
     resolution: { value: new THREE.Vector2() }
   },
 
@@ -236,6 +237,7 @@ function updateScene() {
 
 function updateCamera() {
   // state.cZoom = 1 - Math.sin(window.scrollY / 1000.0);
+  myShader.uniforms.scroll.value = scrollY;
   camera.position.x = 1 - window.scrollY / 550.0;
   camera.position.y = 1 - window.scrollY / 550.0;
   if (window.scrollY > 0 && scrollSvg.style.opacity != 0) {
