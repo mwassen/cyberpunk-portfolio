@@ -7,6 +7,15 @@ body {
   background-color: black;
 }
 
+#scroll-down {
+  fill: white;
+  width: auto;
+  opacity: 0;
+  height: 25px;
+  margin-bottom: 5vh;
+  transition: opacity ease-in-out 0.4s;
+}
+
 #main-container {
   height: 2000px;
   width: 100vw;
@@ -25,7 +34,12 @@ body {
 }
 
 #buffer {
+  width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 #three {

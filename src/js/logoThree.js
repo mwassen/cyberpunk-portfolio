@@ -31,6 +31,9 @@ const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera();
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
 
+// DOM references
+const scrollSvg = document.getElementById("scroll-down");
+
 // State for use in GUI and application
 const state = {
   cZoom: 0.75,
@@ -185,7 +188,10 @@ function animate() {
     logoMesh.rotation.y = Math.sin(frame / 300) / 10;
     logoMesh.position.set(0, Math.sin(frame / 40) / 75, 0);
   }
-  if (frame > 75) glitchPass.goWild = false;
+  if (frame == 75) {
+    scrollSvg.style.opacity = 1;
+    glitchPass.goWild = false;
+  }
 
   myShader.uniforms.time.value += 0.1;
   frame++;
@@ -232,9 +238,11 @@ function updateCamera() {
   // state.cZoom = 1 - Math.sin(window.scrollY / 1000.0);
   camera.position.x = 1 - window.scrollY / 550.0;
   camera.position.y = 1 - window.scrollY / 550.0;
-  if (window.scrollY > 200) {
+  if (window.scrollY > 0 && scrollSvg.style.opacity != 0) {
+    scrollSvg.style.opacity = 0;
     glitchPass.enabled = false;
-  } else {
+  } else if (window.scrollY === 0) {
+    scrollSvg.style.opacity = 1;
     glitchPass.enabled = true;
   }
   camera.lookAt(new THREE.Vector3());
