@@ -1,3 +1,3 @@
-# Personal Portfolio
+# My Website
 
-Currently placeholder portfolio, will soon be updated.
+Website to showcase my programming portfolio. Uses three.js alongside some custom shaders made by me.
