@@ -13,7 +13,8 @@
   </head>
   <body>
     <div id="three"></div>
-    <div id="buffer">
+    <div id="bg-cont"><div id="bg"></div></div>
+    <div id="buffer-top">
       <svg id="scroll-down" viewBox="0 0 21.2 23">
         <polygon
           points="10.6 18.8 2.2 10.3 0 12.5 10.6 23 21.2 12.4 19 10.3 10.6 18.8"
@@ -41,17 +42,28 @@
         </div>
         <div id="work">
           <h1>Work</h1>
+
           <div class="work-project">
-            <h2>Tape Hiss</h2>
-            <p>
-              Mangle and record tape loops in this game/sonic experiment/thing.
-            </p>
-            <div class="frameworks">:: Pixi.JS, Tone ::</div>
+            <div class="project-text">
+              <h2>Tape Hiss</h2>
+              <p>
+                Worked on the code, design and sound in this small web-based
+                audio game. Set tape players on fire and revel in their ashes.
+                🔥
+              </p>
+              <div class="frameworks">:: Pixi.JS, Tone ::</div>
+            </div>
           </div>
           <div class="work-project">
-            <h2>Music Forecast</h2>
-            <p></p>
-            <div class="frameworks">:: React, D3, Node ::</div>
+            <div class="project-text">
+              <h2>Music Forecast</h2>
+              <p>
+                Developed a web app that visualises concert information for
+                cities across the world. Scope out concerts by searching any
+                city. 🎸
+              </p>
+              <div class="frameworks">:: React, D3, Node ::</div>
+            </div>
           </div>
         </div>
         <div id="about"></div>
@@ -60,6 +72,7 @@
         </div> -->
       </div>
     </div>
+    <div id="buffer-bottom"></div>
   </body>
   <script src="js/logoThree.js"></script>
 </html>

@@ -37,14 +37,19 @@ if (WebGL.isWebGLAvailable() === false) {
 // SETUP
 const scene = new Scene();
 const camera = new OrthographicCamera();
-const renderer = new WebGLRenderer({ alpha: true, antialias: false });
+const renderer = new WebGLRenderer({ alpha: true });
 
 // Window sizing
 let width = window.innerWidth;
 let height = window.innerHeight;
 
+let aspectRatio = width / height;
+console.log(aspectRatio);
+
 // DOM references
 const scrollSvg = document.getElementById("scroll-down");
+const contentBg = document.getElementById("bg");
+const writtenContent = document.getElementById("main-container");
 
 // const accelerometer = new Accelerometer({ frequency: 60 });
 
@@ -57,7 +62,7 @@ const scrollSvg = document.getElementById("scroll-down");
 
 // State for use in GUI and application
 const state = {
-  cZoom: 0.75,
+  cZoom: 1,
   bloom: {
     exposure: 1,
     bloomStrength: 1.5,
@@ -139,7 +144,7 @@ bloomPass.radius = state.bloom.bloomRadius;
 const glitchPass = new GlitchPass();
 glitchPass.renderToScreen = false;
 
-console.log(glitchPass);
+// console.log(glitchPass);
 
 // const ssaoPass = new SSAOPass(
 //   scene,
@@ -208,9 +213,8 @@ function animate() {
   }
   // Initial glitch
   if (frame == 75) {
-    if (window.scrollY == 0) scrollSvg.style.opacity = 1;
     glitchPass.goWild = false;
-  }
+  } else if (frame == 150 && window.scrollY == 0) scrollSvg.style.opacity = 1;
 
   myShader.uniforms.time.value += 0.1;
   frame++;
@@ -218,6 +222,7 @@ function animate() {
   statsWidget.end();
 }
 
+// updateCamera();
 animate();
 
 function updateScene() {
@@ -253,11 +258,26 @@ function updateScene() {
   fxaaPass.material.uniforms["resolution"].value.y = 1 / (height * pixelRatio);
 }
 
+// Changes on scroll
 function updateCamera() {
   // state.cZoom = 1 - Math.sin(window.scrollY / 1000.0);
+
+  // Change content background opacity
+  if (window.scrollY > 200) {
+    writtenContent.style.opacity = 1;
+    contentBg.style.opacity = 0.8;
+  } else {
+    writtenContent.style.opacity = 0;
+    contentBg.style.opacity = 0;
+  }
+
+  // Change camera position
   myShader.uniforms.scroll.value = window.scrollY;
-  camera.position.x = 1 - window.scrollY / 550.0;
-  camera.position.y = 1 - window.scrollY / 550.0;
+  camera.position.x = 1 + window.scrollY / 55.0;
+  camera.position.y = 1 + window.scrollY / 55.0;
+  camera.zoom = 1 + window.scrollY / 55.0;
+
+  // Change logo glitching
   if (window.scrollY > 0 && glitchPass.enabled && !glitchPass.goWild) {
     scrollSvg.style.opacity = 0;
     glitchPass.enabled = false;
@@ -265,6 +285,8 @@ function updateCamera() {
     scrollSvg.style.opacity = 1;
     glitchPass.enabled = true;
   }
+
+  // Update cameras
   camera.lookAt(new Vector3());
   camera.updateProjectionMatrix();
 }

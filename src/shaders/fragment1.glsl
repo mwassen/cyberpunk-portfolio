@@ -3,7 +3,7 @@ precision highp float;
 uniform float time;
 uniform float scroll;
 
-varying vec2 vUv;
+// varying vec2 vUv;
 varying vec3 vNormal;
 varying vec3 nposition;
 
