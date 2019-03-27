@@ -1,5 +1,4 @@
 // IMPORTS
-
 // THREE stuff - split for tree shaking
 import { Scene } from "three-full/sources/scenes/Scene";
 import { OrthographicCamera } from "three-full/sources/cameras/OrthographicCamera";
@@ -30,8 +29,29 @@ import logo3d from "../assets/mswsn3d.glb";
 import vShader from "../shaders/vertex1.glsl";
 import fShader from "../shaders/fragment1.glsl";
 
+// Check for WebGL Compatibility
 if (WebGL.isWebGLAvailable() === false) {
-  document.body.appendChild(WebGL.getWebGLErrorMessage());
+  document.body.innerHTML = WebGL.getWebGLErrorMessage();
+}
+
+// DOM references
+const scrollSvg = document.getElementById("scroll-marker");
+const contentBg = document.getElementById("bg");
+const writtenContent = document.getElementById("main-container");
+const threeDiv = document.getElementById("three");
+
+// Window sizing
+let width = window.innerWidth;
+let height = window.innerHeight;
+
+// Device check
+let onMobile = false;
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  const mobileHeight = height + 70;
+  height = mobileHeight;
+  threeDiv.style.height = mobileHeight + "px";
+  scrollSvg.style.marginBottom = "75px";
+  onMobile = true;
 }
 
 // SETUP
@@ -39,20 +59,11 @@ const scene = new Scene();
 const camera = new OrthographicCamera();
 const renderer = new WebGLRenderer({ alpha: true });
 
-// Window sizing
-let width = window.innerWidth;
-let height = window.innerHeight;
-
 let aspectRatio = width / height;
 
 if (process.env.NODE_ENV === "development") {
   console.log(aspectRatio);
 }
-
-// DOM references
-const scrollSvg = document.getElementById("scroll-marker");
-const contentBg = document.getElementById("bg");
-const writtenContent = document.getElementById("main-container");
 
 // const accelerometer = new Accelerometer({ frequency: 60 });
 
@@ -80,6 +91,7 @@ const state = {
 
 var renderPass = new RenderPass(scene, camera);
 
+let devMode = false;
 let statsWidget = null;
 
 // GUI, only enabled in development
@@ -107,6 +119,7 @@ if (process.env.NODE_ENV === "development") {
   statsWidget = new Stats();
   statsWidget.showPanel(0);
   document.body.appendChild(statsWidget.dom);
+  devMode = true;
 }
 
 // // LIGHTS
@@ -164,10 +177,22 @@ composer.addPass(glitchPass);
 composer.addPass(fxaaPass);
 
 // EVENTS
-window.addEventListener("resize", updateScene);
+if (!onMobile) {
+  window.addEventListener("resize", () => {
+    updateScene(false);
+  });
+} else {
+  window.addEventListener("orientationchange", () => {
+    updateScene(true);
+  });
+}
 window.addEventListener("scroll", updateCamera);
 
-document.getElementById("three").appendChild(renderer.domElement);
+// document.getElementById("full-container").addEventListener("scroll", () => {
+//   console.log("scroll on div");
+// });
+
+threeDiv.appendChild(renderer.domElement);
 
 updateScene();
 
@@ -192,9 +217,8 @@ loader.load(
 
 let frame = 0;
 function animate() {
-  if (process.env.NODE_ENV === "development") {
-    statsWidget.begin();
-  }
+  if (devMode) statsWidget.begin();
+
   requestAnimationFrame(animate);
 
   // Hover animations on model
@@ -215,17 +239,27 @@ function animate() {
   frame++;
   composer.render();
 
-  if (process.env.NODE_ENV === "development") {
-    statsWidget.end();
-  }
+  if (devMode) statsWidget.end();
 }
 
 // updateCamera();
 animate();
 
-function updateScene() {
-  width = window.innerWidth;
-  height = window.innerHeight;
+function updateScene(reOrient) {
+  width = reOrient ? null : window.innerWidth;
+  height = onMobile ? window.innerHeight + 70 : window.innerHeight;
+
+  // Change size values if mobile screen was reoriented
+  if (reOrient) {
+    if (screen.orientation.angle == 0 || screen.orientation.angle == 180) {
+      width = window.innerHeight + 70;
+      height = window.innerWidth;
+    } else {
+      width = window.innerHeight + 70;
+      height = window.innerWidth;
+    }
+  }
+
   const aspect = width / height;
 
   // Ortho zoom
