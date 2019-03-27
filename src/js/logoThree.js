@@ -47,7 +47,7 @@ let aspectRatio = width / height;
 console.log(aspectRatio);
 
 // DOM references
-const scrollSvg = document.getElementById("scroll-down");
+const scrollSvg = document.getElementById("scroll-marker");
 const contentBg = document.getElementById("bg");
 const writtenContent = document.getElementById("main-container");
 

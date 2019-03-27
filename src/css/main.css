@@ -3,7 +3,7 @@ body {
   background-color: black;
 }
 
-#scroll-down {
+#scroll-marker {
   fill: white;
   width: auto;
   opacity: 0;
