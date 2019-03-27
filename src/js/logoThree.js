@@ -44,7 +44,10 @@ let width = window.innerWidth;
 let height = window.innerHeight;
 
 let aspectRatio = width / height;
-console.log(aspectRatio);
+
+if (process.env.NODE_ENV === "development") {
+  console.log(aspectRatio);
+}
 
 // DOM references
 const scrollSvg = document.getElementById("scroll-marker");
