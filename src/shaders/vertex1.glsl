@@ -9,7 +9,6 @@ uniform float scroll;
 uniform mat4 projectionMatrix;
 uniform mat4 modelViewMatrix;
 
-
 // varying vec2 vUv;
 varying vec3 nposition;
 varying vec3 vNormal;
