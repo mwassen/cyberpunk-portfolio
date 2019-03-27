@@ -39,6 +39,7 @@ const scrollSvg = document.getElementById("scroll-marker");
 const contentBg = document.getElementById("bg");
 const writtenContent = document.getElementById("main-container");
 const threeDiv = document.getElementById("three");
+const projectDivs = [...document.getElementsByClassName("work-project")];
 
 // Window sizing
 let width = window.innerWidth;
@@ -58,6 +59,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
 const scene = new Scene();
 const camera = new OrthographicCamera();
 const renderer = new WebGLRenderer({ alpha: true });
+let logoMesh; // Logo model for global access
 
 let aspectRatio = width / height;
 
@@ -94,34 +96,6 @@ var renderPass = new RenderPass(scene, camera);
 let devMode = false;
 let statsWidget = null;
 
-// GUI, only enabled in development
-if (process.env.NODE_ENV === "development") {
-  const gui = new dat.GUI();
-  gui.add(state, "cZoom", 0.01, 5, 0.0001).onChange(updateScene);
-  gui.add(state.bloom, "exposure", 0.1, 2).onChange(function(value) {
-    renderer.toneMappingExposure = Math.pow(value, 4.0);
-  });
-  gui.add(state.bloom, "bloomThreshold", 0.0, 1.0).onChange(function(value) {
-    bloomPass.threshold = Number(value);
-  });
-  gui.add(state.bloom, "bloomStrength", 0.0, 3.0).onChange(function(value) {
-    bloomPass.strength = Number(value);
-  });
-  gui
-    .add(state.bloom, "bloomRadius", 0.0, 1.0)
-    .step(0.01)
-    .onChange(function(value) {
-      bloomPass.radius = Number(value);
-    });
-
-  gui.closed = true;
-
-  statsWidget = new Stats();
-  statsWidget.showPanel(0);
-  document.body.appendChild(statsWidget.dom);
-  devMode = true;
-}
-
 // // LIGHTS
 // const light1 = new THREE.AmbientLight(0xffffff, 0.7);
 // scene.add(light1);
@@ -129,8 +103,6 @@ if (process.env.NODE_ENV === "development") {
 // const light2 = new THREE.PointLight(0xffffff, 0.5);
 // scene.add(light2);
 // light2.lookAt(new THREE.Vector3());
-
-let logoMesh;
 
 // SHADERS
 const myShader = new RawShaderMaterial({
@@ -207,7 +179,7 @@ loader.load(
     scene.add(logoMesh);
     glitchPass.goWild = state.glitch.goWild;
   },
-  function(xhr) {
+  xhr => {
     console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
   },
   error => {
@@ -216,9 +188,8 @@ loader.load(
 );
 
 let frame = 0;
-function animate() {
+function animate(delta) {
   if (devMode) statsWidget.begin();
-
   requestAnimationFrame(animate);
 
   // Hover animations on model
@@ -323,6 +294,53 @@ function updateCamera() {
   camera.updateProjectionMatrix();
 }
 
-window.onbeforeunload = function() {
+window.onbeforeunload = () => {
   window.scrollTo(0, 0);
 };
+
+projectDivs.forEach(project => {
+  const ghLink = project.querySelector(".github-link");
+  project.addEventListener("mouseenter", event => {
+    ghLink.style.opacity = 0.3;
+    ghLink.style.cursor = "pointer";
+  });
+  project.addEventListener("mouseleave", event => {
+    ghLink.style.opacity = 0;
+    ghLink.style.cursor = "none";
+  });
+  ghLink.addEventListener("mouseenter", event => {
+    ghLink.style.opacity = 1;
+  });
+  ghLink.addEventListener("mouseleave", event => {
+    ghLink.style.opacity = 0.3;
+  });
+});
+
+// DEVELOPMENT
+// GUI, only enabled in development
+if (process.env.NODE_ENV === "development") {
+  const gui = new dat.GUI();
+  gui.add(state, "cZoom", 0.01, 5, 0.0001).onChange(updateScene);
+  gui.add(state.bloom, "exposure", 0.1, 2).onChange(value => {
+    renderer.toneMappingExposure = Math.pow(value, 4.0);
+  });
+  gui.add(state.bloom, "bloomThreshold", 0.0, 1.0).onChange(value => {
+    bloomPass.threshold = Number(value);
+  });
+  gui.add(state.bloom, "bloomStrength", 0.0, 3.0).onChange(value => {
+    bloomPass.strength = Number(value);
+  });
+  gui
+    .add(state.bloom, "bloomRadius", 0.0, 1.0)
+    .step(0.01)
+    .onChange(value => {
+      bloomPass.radius = Number(value);
+    });
+
+  gui.closed = true;
+
+  statsWidget = new Stats();
+  statsWidget.showPanel(0);
+  document.body.appendChild(statsWidget.dom);
+  devMode = true;
+}

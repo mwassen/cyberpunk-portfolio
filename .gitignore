@@ -3,4 +3,8 @@ reference/
 dist/
 .cache/
 .prettierrc
-./CNAME
+CNAME
+
+# Unused forks
+src/js/DigitalGlitch.js
+src/js/GlitchPass.js

@@ -106,12 +106,26 @@ body {
   width: 96%;
 }
 
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 20px;
+  margin-top: 14px;
+}
+
 .work-project:hover {
   background-color: rgba(169, 115, 212, 0.2);
 }
 
 .frameworks {
   font-size: 12px;
+}
+
+.github-link {
+  height: 20px;
+  opacity: 0;
+  transition: opacity 0.4s;
 }
 
 h1 {
