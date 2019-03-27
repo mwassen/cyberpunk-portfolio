@@ -55,7 +55,7 @@ body {
   color: royalblue;
   opacity: 0;
   transition: opacity ease-in-out 0.4s;
-  font-family: 'Ubuntu Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 18px;
 }
 
@@ -108,18 +108,19 @@ body {
 }
 
 .frameworks {
-  font-style: italic;
   font-size: 12px;
 }
 
 h1 {
-  font-family: 'ZCOOL XiaoWei', serif;
-  font-size: 48px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
   margin-bottom: 8px;
 }
 
 h2 {
-  font-size: 28px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 22px;
   margin-bottom: 8px;
   font-style: bold;
 }
@@ -138,14 +139,14 @@ p {
 hr {
   margin-top: 30px;
   margin-bottom: 30px;
-  border: 2px solid royalblue;
+  border: 0px solid royalblue;
   opacity: 0.4;
   width: 75%;
 }
 
 #personal-links {
   font-size: 14px;
-  width: 40%;
+  width: 45%;
   display: flex;
   justify-content: space-between;
 }
