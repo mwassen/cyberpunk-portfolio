@@ -144,17 +144,6 @@ bloomPass.radius = state.bloom.bloomRadius;
 const glitchPass = new GlitchPass();
 glitchPass.renderToScreen = false;
 
-// console.log(glitchPass);
-
-// const ssaoPass = new SSAOPass(
-//   scene,
-//   camera,
-//   window.innerWidth,
-//   window.innerHeight
-// );
-// ssaoPass.kernelRadius = 16;
-// ssaoPass.renderToScreen = false;
-
 const fxaaPass = new ShaderPass(FXAAShader);
 fxaaPass.renderToScreen = true;
 
@@ -222,6 +211,7 @@ function animate() {
   myShader.uniforms.time.value += 0.1;
   frame++;
   composer.render();
+
   if (process.env.NODE_ENV === "development") {
     statsWidget.end();
   }
