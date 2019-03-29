@@ -12,6 +12,7 @@ import { ShaderPass } from "three-full/sources/postprocessing/ShaderPass";
 import { GlitchPass } from "three-full/sources/postprocessing/GlitchPass";
 import { UnrealBloomPass } from "three-full/sources/postprocessing/UnrealBloomPass";
 import { EffectComposer } from "three-full/sources/postprocessing/EffectComposer";
+import { FilmPass } from "three-full/sources/postprocessing/FilmPass";
 import { FXAAShader } from "three-full/sources/shaders/FXAAShader";
 import { GLTFLoader } from "three-full/sources/loaders/GLTFLoader";
 
@@ -61,11 +62,11 @@ const camera = new OrthographicCamera();
 const renderer = new WebGLRenderer({ alpha: true });
 let logoMesh; // Logo model for global access
 
-let aspectRatio = width / height;
+// let aspectRatio = width / height;
 
-if (process.env.NODE_ENV === "development") {
-  console.log(aspectRatio);
-}
+// if (process.env.NODE_ENV === "development") {
+//   console.log(aspectRatio);
+// }
 
 // const accelerometer = new Accelerometer({ frequency: 60 });
 
@@ -129,6 +130,9 @@ bloomPass.threshold = state.bloom.bloomThreshold;
 bloomPass.strength = state.bloom.bloomStrength;
 bloomPass.radius = state.bloom.bloomRadius;
 
+const filmPass = new FilmPass(0.2, 0.15, 1200, false); // grain opacity, scanlines opacity, scanlines amount, greyscale
+filmPass.renderToScreen = false;
+
 const glitchPass = new GlitchPass();
 glitchPass.renderToScreen = false;
 
@@ -145,6 +149,7 @@ const composer = new EffectComposer(renderer);
 composer.setSize(width, height);
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
+composer.addPass(filmPass);
 composer.addPass(glitchPass);
 composer.addPass(fxaaPass);
 
@@ -160,12 +165,8 @@ if (!onMobile) {
 }
 window.addEventListener("scroll", updateCamera);
 
-// document.getElementById("full-container").addEventListener("scroll", () => {
-//   console.log("scroll on div");
-// });
-
+// Append three to DOM
 threeDiv.appendChild(renderer.domElement);
-
 updateScene();
 
 // MODELS
@@ -176,6 +177,11 @@ loader.load(
     logoMesh = gltf.scene.children[0];
     logoMesh.material = myShader;
     logoMesh.scale.set(70, 70, 70);
+
+    // Set model rotation to fill screen
+    // console.log({ width, height, aspectRatio });
+    if (width < 720) logoMesh.rotation.y = (720 - width) / -500;
+
     scene.add(logoMesh);
     glitchPass.goWild = state.glitch.goWild;
   },
@@ -187,6 +193,7 @@ loader.load(
   }
 );
 
+// ANIMATION
 let frame = 0;
 function animate(delta) {
   if (devMode) statsWidget.begin();
@@ -197,9 +204,10 @@ function animate(delta) {
     // logoMesh.rotation.x = Math.sin(frame / 100);
     // logoMesh.rotation.z = Math.sin(frame / 50);
     logoMesh.rotation.x = Math.sin(frame / 100) / 10 - 100;
-    logoMesh.rotation.y = Math.sin(frame / 300) / 10;
+    logoMesh.rotation.y += Math.sin(frame / 5) / 5000;
     logoMesh.position.set(0, Math.sin(frame / 40) / 75, 0);
   }
+
   // Initial glitch
   if (frame == 75) {
     glitchPass.goWild = false;
@@ -207,15 +215,13 @@ function animate(delta) {
   } else if (frame == 150 && window.scrollY == 0) scrollSvg.style.opacity = 1;
 
   myShader.uniforms.time.value += 0.1;
-  frame++;
   composer.render();
-
+  frame++;
   if (devMode) statsWidget.end();
 }
-
-// updateCamera();
 animate();
 
+// SETUP scene, called on start and on resize/reorient events
 function updateScene(reOrient) {
   width = reOrient ? null : window.innerWidth;
   height = onMobile ? window.innerHeight + 70 : window.innerHeight;
@@ -230,6 +236,9 @@ function updateScene(reOrient) {
       height = window.innerWidth;
     }
   }
+
+  // Fit model to screen;
+  if (logoMesh && width < 720) logoMesh.rotation.y = (720 - width) / -500;
 
   const aspect = width / height;
 
@@ -263,12 +272,10 @@ function updateScene(reOrient) {
 
 // Changes on scroll
 function updateCamera() {
-  // state.cZoom = 1 - Math.sin(window.scrollY / 1000.0);
-
   // Change content background opacity
   if (window.scrollY > 200) {
     writtenContent.style.opacity = 1;
-    contentBg.style.opacity = 0.8;
+    contentBg.style.opacity = 0.7;
   } else {
     writtenContent.style.opacity = 0;
     contentBg.style.opacity = 0;
@@ -294,14 +301,16 @@ function updateCamera() {
   camera.updateProjectionMatrix();
 }
 
+// Reset scroll location on page reload
 window.onbeforeunload = () => {
   window.scrollTo(0, 0);
 };
 
+// Mouse effects for project Divs
 projectDivs.forEach(project => {
   const ghLink = project.querySelector(".github-link");
   project.addEventListener("mouseenter", event => {
-    ghLink.style.opacity = 0.3;
+    ghLink.style.opacity = 0.25;
     ghLink.style.cursor = "pointer";
   });
   project.addEventListener("mouseleave", event => {
@@ -312,7 +321,7 @@ projectDivs.forEach(project => {
     ghLink.style.opacity = 1;
   });
   ghLink.addEventListener("mouseleave", event => {
-    ghLink.style.opacity = 0.3;
+    ghLink.style.opacity = 0.25;
   });
 });
 
