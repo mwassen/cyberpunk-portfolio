@@ -130,7 +130,7 @@ bloomPass.threshold = state.bloom.bloomThreshold;
 bloomPass.strength = state.bloom.bloomStrength;
 bloomPass.radius = state.bloom.bloomRadius;
 
-const filmPass = new FilmPass(0.2, 0.15, 1200, false); // grain opacity, scanlines opacity, scanlines amount, greyscale
+const filmPass = new FilmPass(0.2, 0.1, 1200, false); // grain opacity, scanlines opacity, scanlines amount, greyscale
 filmPass.renderToScreen = false;
 
 const glitchPass = new GlitchPass();
