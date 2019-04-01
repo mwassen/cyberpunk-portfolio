@@ -136,8 +136,8 @@ bloomPass.threshold = state.bloom.bloomThreshold;
 bloomPass.strength = state.bloom.bloomStrength;
 bloomPass.radius = state.bloom.bloomRadius;
 
-// const filmPass = new FilmPass(0.4, 0.1, 1200, false); // grain opacity, scanlines opacity, scanlines amount, greyscale
-// filmPass.renderToScreen = false;
+const filmPass = new FilmPass(0.25, 0.0, 1200, false); // grain opacity, scanlines opacity, scanlines amount, greyscale
+filmPass.renderToScreen = false;
 
 const glitchPass = new GlitchPass();
 glitchPass.renderToScreen = false;
@@ -155,7 +155,7 @@ const composer = new EffectComposer(renderer);
 composer.setSize(width, height);
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
-// composer.addPass(filmPass);
+composer.addPass(filmPass);
 composer.addPass(glitchPass);
 composer.addPass(fxaaPass);
 
