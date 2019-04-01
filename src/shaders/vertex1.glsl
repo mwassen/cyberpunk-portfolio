@@ -6,6 +6,7 @@ attribute vec3 normal;
 
 uniform float time;
 uniform float scroll;
+uniform float intro;
 uniform mat4 projectionMatrix;
 uniform mat4 modelViewMatrix;
 
@@ -19,10 +20,9 @@ void main () {
 	vNormal = normal;
 
 	vec3 offset = position;
-	float dist =  (sin(time / 5.0) + 1.0) * 0.00005;
+	float dist =  (sin(time / 5.0) + 1.0) * 0.00005 + scroll;
 
 	offset.xyz += normal * dist;
-
 
 	nposition = position;
 

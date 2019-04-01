@@ -50,6 +50,7 @@ let height = window.innerHeight;
 const scene = new Scene();
 const camera = new OrthographicCamera();
 const renderer = new WebGLRenderer({ alpha: true });
+
 let logoMesh; // Logo model for global access
 let scale = 70;
 let yOffset = 0;
@@ -114,6 +115,7 @@ const myShader = new RawShaderMaterial({
   uniforms: {
     time: { value: 1.0 },
     scroll: { value: 0.0 },
+    // intro: { value: 50.0 },
     resolution: { value: new Vector2() }
   },
 
@@ -134,8 +136,8 @@ bloomPass.threshold = state.bloom.bloomThreshold;
 bloomPass.strength = state.bloom.bloomStrength;
 bloomPass.radius = state.bloom.bloomRadius;
 
-const filmPass = new FilmPass(0.4, 0.1, 1200, false); // grain opacity, scanlines opacity, scanlines amount, greyscale
-filmPass.renderToScreen = false;
+// const filmPass = new FilmPass(0.4, 0.1, 1200, false); // grain opacity, scanlines opacity, scanlines amount, greyscale
+// filmPass.renderToScreen = false;
 
 const glitchPass = new GlitchPass();
 glitchPass.renderToScreen = false;
@@ -153,7 +155,7 @@ const composer = new EffectComposer(renderer);
 composer.setSize(width, height);
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
-composer.addPass(filmPass);
+// composer.addPass(filmPass);
 composer.addPass(glitchPass);
 composer.addPass(fxaaPass);
 
@@ -218,6 +220,9 @@ function animate(delta) {
     glitchPass.goWild = false;
     if (window.scrollY != 0) glitchPass.enabled = false;
   } else if (frame == 150 && window.scrollY == 0) scrollSvg.style.opacity = 1;
+
+  // if (frame > 30 && frame < 80) myShader.uniforms.intro.value -= 1.0;
+  // console.log(myShader.uniforms.intro.value);
 
   myShader.uniforms.time.value += 0.1;
   composer.render();
@@ -287,7 +292,7 @@ function updateCamera() {
   }
 
   // Change camera position
-  myShader.uniforms.scroll.value = window.scrollY;
+  myShader.uniforms.scroll.value = window.scrollY / 750000;
   camera.position.x = 1 + window.scrollY / 55.0;
   camera.position.y = 1 + window.scrollY / 55.0;
   camera.zoom = 1 + window.scrollY / 55.0;
