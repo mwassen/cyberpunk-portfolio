@@ -46,21 +46,25 @@ const projectDivs = [...document.getElementsByClassName("work-project")];
 let width = window.innerWidth;
 let height = window.innerHeight;
 
-// Device check
-let onMobile = false;
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
-  const mobileHeight = height + 70;
-  height = mobileHeight;
-  threeDiv.style.height = mobileHeight + "px";
-  scrollSvg.style.marginBottom = "75px";
-  onMobile = true;
-}
-
 // SETUP
 const scene = new Scene();
 const camera = new OrthographicCamera();
 const renderer = new WebGLRenderer({ alpha: true });
 let logoMesh; // Logo model for global access
+let scale = 70;
+let yOffset = 0;
+
+// Device check
+let onMobile = false;
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  const mobileHeight = height + 56;
+  height = mobileHeight;
+  threeDiv.style.height = mobileHeight + "px";
+  scrollSvg.style.marginBottom = "75px";
+  scale = 60;
+  yOffset = 0.15;
+  onMobile = true;
+}
 
 // let aspectRatio = width / height;
 
@@ -130,7 +134,7 @@ bloomPass.threshold = state.bloom.bloomThreshold;
 bloomPass.strength = state.bloom.bloomStrength;
 bloomPass.radius = state.bloom.bloomRadius;
 
-const filmPass = new FilmPass(0.2, 0.1, 1200, false); // grain opacity, scanlines opacity, scanlines amount, greyscale
+const filmPass = new FilmPass(0.4, 0.1, 1200, false); // grain opacity, scanlines opacity, scanlines amount, greyscale
 filmPass.renderToScreen = false;
 
 const glitchPass = new GlitchPass();
@@ -176,11 +180,12 @@ loader.load(
   gltf => {
     logoMesh = gltf.scene.children[0];
     logoMesh.material = myShader;
-    logoMesh.scale.set(70, 70, 70);
+    logoMesh.scale.set(scale, scale, scale);
 
     // Set model rotation to fill screen
     // console.log({ width, height, aspectRatio });
     if (width < 720) logoMesh.rotation.y = (720 - width) / -500;
+    if (onMobile) logoMesh.position.set(0, yOffset, 0);
 
     scene.add(logoMesh);
     glitchPass.goWild = state.glitch.goWild;
@@ -203,9 +208,9 @@ function animate(delta) {
   if (logoMesh) {
     // logoMesh.rotation.x = Math.sin(frame / 100);
     // logoMesh.rotation.z = Math.sin(frame / 50);
-    logoMesh.rotation.x = Math.sin(frame / 100) / 10 - 100;
-    logoMesh.rotation.y += Math.sin(frame / 5) / 5000;
-    logoMesh.position.set(0, Math.sin(frame / 40) / 75, 0);
+    logoMesh.rotation.x = Math.sin(frame / 1000) / 30 - 100;
+    logoMesh.rotation.y += Math.sin(frame / 400) / 5000;
+    logoMesh.position.set(0, yOffset + Math.sin(frame / 100) / 75, 0);
   }
 
   // Initial glitch
