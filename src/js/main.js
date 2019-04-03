@@ -86,22 +86,34 @@ window.addEventListener("scroll", () => {
   }
 });
 // Mouse effects for project Divs
-projectDivs.forEach(project => {
-  const ghLink = project.querySelector(".github-link");
-  project.addEventListener("mouseenter", () => {
-    ghLink.style.opacity = 0.25;
-    ghLink.style.cursor = "pointer";
-  });
-  project.addEventListener("mouseleave", () => {
-    ghLink.style.opacity = 0;
-    ghLink.style.cursor = "none";
-  });
-  ghLink.addEventListener("mouseenter", () => {
-    ghLink.style.opacity = 1;
-  });
-  ghLink.addEventListener("mouseleave", () => {
-    ghLink.style.opacity = 0.25;
-  });
+projectDivs.forEach((project, ind) => {
+  // Add links to project divs
+  const url = ind === 0 ? "one" : "two";
+  project.onclick = () => window.open(url);
+
+  // Add github links to projects in on desktop
+  if (!onMobile) {
+    const ghLink = project.querySelector(".github-link");
+    project.addEventListener("mouseenter", () => {
+      ghLink.style.opacity = 0.25;
+      ghLink.style.cursor = "pointer";
+    });
+    project.addEventListener("mouseleave", () => {
+      ghLink.style.opacity = 0;
+      ghLink.style.cursor = "none";
+    });
+    ghLink.addEventListener("mouseenter", () => {
+      ghLink.style.opacity = 1;
+      project.onclick = null;
+    });
+    ghLink.addEventListener("mouseleave", () => {
+      ghLink.style.opacity = 0.25;
+      project.onclick = () => window.open(url);
+    });
+  } else {
+    // project.style.backgroundColor = "rgba(169, 115, 212, 0.08)";
+    project.style.border = "1px dashed rgba(64, 104, 224, 0.3)";
+  }
 });
 
 // Reset scroll location on page reload

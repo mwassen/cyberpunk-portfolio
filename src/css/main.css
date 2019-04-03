@@ -97,7 +97,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 10px;
   background-image: none;
   background-blend-mode: screen;
   background-size: cover;
@@ -141,6 +141,7 @@ video {
   height: 20px;
   opacity: 0;
   transition: opacity 0.4s;
+  z-index: 4;
 }
 
 h1 {
@@ -180,6 +181,10 @@ hr {
   width: 220px;
   display: flex;
   justify-content: space-between;
+}
+
+.project-link {
+  display: block;
 }
 
 .outbound-link {

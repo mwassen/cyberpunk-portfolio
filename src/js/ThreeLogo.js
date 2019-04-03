@@ -197,6 +197,7 @@ const LogoBg = browserState => {
   const reorient = (angle, dimensions) => {
     [width, height] = dimensions;
 
+    console.log(angle);
     if (angle == 0 || angle == 180) {
       width = dimensions[1] + 70;
       height = dimensions[0];
@@ -206,7 +207,7 @@ const LogoBg = browserState => {
     }
 
     model.then(loadedModel => {
-      if (model && width > 720) model.rotation.y = 0;
+      if (loadedModel && width > 720) loadedModel.rotation.y = 0;
       if (loadedModel && width < 720) {
         loadedModel.rotation.y = (720 - width) / -500;
       }
