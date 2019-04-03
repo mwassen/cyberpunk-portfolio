@@ -182,11 +182,11 @@ hr {
   justify-content: space-between;
 }
 
-a {
+.outbound-link {
   color: rgba(169, 115, 212, 0.9);
   transition: color 0.4s ease-in-out;
 }
 
-a:hover {
+.outbound-link:hover {
   color: white;
 }

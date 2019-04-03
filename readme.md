@@ -1,3 +1,3 @@
 # My Website
 
-Website to showcase my programming portfolio. Uses three.js alongside some custom shaders made by me.
+Website to showcase my programming portfolio. Makes use of three.js and some custom shaders.

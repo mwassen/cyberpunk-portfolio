@@ -19,6 +19,13 @@ let scale = 70;
 let width = window.innerWidth;
 let height = window.innerHeight;
 
+// element references
+const scrollSvg = document.getElementById("scroll-marker");
+const contentBg = document.getElementById("bg");
+const writtenContent = document.getElementById("main-container");
+const threeDiv = document.getElementById("three");
+const projectDivs = [...document.getElementsByClassName("work-project")];
+
 // Device check
 const onMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
   navigator.userAgent
@@ -31,13 +38,6 @@ if (onMobile) {
   scrollSvg.style.marginBottom = "75px";
   scale = 60;
 }
-
-// element references
-const scrollSvg = document.getElementById("scroll-marker");
-const contentBg = document.getElementById("bg");
-const writtenContent = document.getElementById("main-container");
-const threeDiv = document.getElementById("three");
-const projectDivs = [...document.getElementsByClassName("work-project")];
 
 // THREE BACKGROUND
 const threeBackground = LogoBackground({

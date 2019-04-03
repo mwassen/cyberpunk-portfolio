@@ -152,12 +152,12 @@ const LogoBg = browserState => {
     if (devMode) statsWidget.begin();
 
     // Hover animations on model
-    model.then(loadedmodel => {
+    model.then(loadedModel => {
       // logoMesh.rotation.x = Math.sin(frame / 100);
       // logoMesh.rotation.z = Math.sin(frame / 50);
-      loadedmodel.rotation.x = Math.sin(frame / 1000) / 30 - 100;
-      loadedmodel.rotation.y += Math.sin(frame / 400) / 5000;
-      loadedmodel.position.set(0, yOffset + Math.sin(frame / 100) / 75, 0);
+      loadedModel.rotation.x = Math.sin(frame / 1000) / 30 - 100;
+      loadedModel.rotation.y += Math.sin(frame / 400) / 5000;
+      loadedModel.position.set(0, yOffset + Math.sin(frame / 100) / 75, 0);
     });
 
     // Initial glitch
@@ -178,7 +178,11 @@ const LogoBg = browserState => {
   const resize = dimensions => {
     [width, height] = dimensions;
 
-    if (model && width < 720) model.rotation.y = (720 - width) / -500;
+    model.then(loadedModel => {
+      if (loadedModel && width < 720) {
+        loadedModel.rotation.y = (720 - width) / -500;
+      }
+    });
 
     updateCamera();
 
@@ -200,9 +204,12 @@ const LogoBg = browserState => {
       height = dimensions[0];
     }
 
-    if (model && width > 720) model.rotation.y = 0;
-
-    if (model && width < 720) model.rotation.y = (720 - width) / -500;
+    model.then(loadedModel => {
+      if (model && width > 720) model.rotation.y = 0;
+      if (loadedModel && width < 720) {
+        loadedModel.rotation.y = (720 - width) / -500;
+      }
+    });
 
     updateCamera();
 

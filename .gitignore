@@ -8,6 +8,7 @@ CNAME
 # Unused updates
 # src/js/3d-logo.js
 # src/js/main.js
+src/js/logoThree.js
 
 # Unused forks
 src/js/DigitalGlitch.js
