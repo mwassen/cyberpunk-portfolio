@@ -155,9 +155,10 @@ const LogoBg = browserState => {
     model.then(loadedModel => {
       // logoMesh.rotation.x = Math.sin(frame / 100);
       // logoMesh.rotation.z = Math.sin(frame / 50);
-      loadedModel.rotation.x = Math.sin(frame / 1000) / 30 - 100;
+      loadedModel.rotation.z = Math.sin(frame / 400) / 100;
+      loadedModel.rotation.x = Math.sin(frame / 1000) / 40 - 100;
       loadedModel.rotation.y += Math.sin(frame / 400) / 5000;
-      loadedModel.position.set(0, yOffset + Math.sin(frame / 100) / 75, 0);
+      loadedModel.position.set(0, yOffset + Math.sin(frame / 200) / 75, 0);
     });
 
     // Initial glitch
