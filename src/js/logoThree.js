@@ -245,6 +245,7 @@ function updateScene(reOrient) {
       width = window.innerHeight + 70;
       height = window.innerWidth;
     }
+    if (logoMesh && width > 720) logoMesh.rotation.y = 0;
   }
 
   // Fit model to screen;

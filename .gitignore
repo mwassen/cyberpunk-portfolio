@@ -5,6 +5,10 @@ dist/
 .prettierrc
 CNAME
 
+# Unused updates
+# src/js/3d-logo.js
+# src/js/main.js
+
 # Unused forks
 src/js/DigitalGlitch.js
 src/js/GlitchPass.js

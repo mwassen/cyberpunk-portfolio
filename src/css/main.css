@@ -93,12 +93,31 @@ body {
   margin-bottom: 2%;
   padding-bottom: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   border-radius: 3px;
+  background-image: none;
+  background-blend-mode: screen;
+  background-size: cover;
   transition: background-color 0.4s;
+}
+
+.work-project:hover {
+  background-color: rgba(169, 115, 212, 0.1);
+}
+
+.work-project:nth-child(2):hover {
+  background-image: url("../assets/tapebg.png");
+}
+
+.work-project:nth-child(3):hover {
+  background-image: url("../assets/musicbg.png");
+}
+
+video {
+  width: 18%;
 }
 
 .project-text {
@@ -111,10 +130,6 @@ body {
   justify-content: space-between;
   height: 20px;
   margin-top: 14px;
-}
-
-.work-project:hover {
-  background-color: rgba(169, 115, 212, 0.2);
 }
 
 .frameworks {
