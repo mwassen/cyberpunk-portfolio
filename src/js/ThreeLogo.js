@@ -110,6 +110,12 @@ const LogoBg = browserState => {
     });
   })(scale).catch(error => console.log(error));
 
+  // const setScale = (scale) => {
+  //   model.then(loadedModel => {
+  //     load
+  //   })
+  // }
+
   // dev mode
   const devMode = process.env.NODE_ENV === "development";
   const statsWidget = devMode ? new Stats() : null;
@@ -198,7 +204,7 @@ const LogoBg = browserState => {
     [width, height] = dimensions;
 
     console.log(angle);
-    if (angle == 0 || angle == 180) {
+    if (angle % 180 === 0) {
       width = dimensions[1] + 70;
       height = dimensions[0];
     } else {
