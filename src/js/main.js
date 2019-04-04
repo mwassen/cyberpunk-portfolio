@@ -76,6 +76,7 @@ if (!onMobile) {
   //   gyroscope.start();
   // }
 }
+let textActive = false;
 window.addEventListener("scroll", () => {
   threeBackground.scroll(window.scrollY);
 
@@ -89,12 +90,16 @@ window.addEventListener("scroll", () => {
   // Fade in/out written content
   if (window.scrollY > window.innerHeight / 2) {
     contentBg.style.opacity = 0.75;
-    setTimeout(() => {
-      writtenContent.style.opacity = 1;
-    }, 300);
+    if (!textActive) {
+      textActive = true;
+      setTimeout(() => {
+        writtenContent.style.opacity = 1;
+      }, 200);
+    }
   } else {
-    writtenContent.style.opacity = 0;
     contentBg.style.opacity = 0;
+    writtenContent.style.opacity = 0;
+    textActive = false;
   }
 });
 // Mouse effects for project Divs
