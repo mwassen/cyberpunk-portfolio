@@ -251,14 +251,21 @@ const LogoBg = browserState => {
   };
 
   const gyro = rotation => {
-    const [x, y, z] = rotation;
+    const normalisedRot = rotation.map(dir => {
+      return dir / (Math.PI * 2) - 0.5;
+    });
+    const [x, y, z] = normalisedRot;
 
-    console.log("Angular velocity along the X-axis " + x);
-    console.log("Angular velocity along the Y-axis " + y);
-    console.log("Angular velocity along the Z-axis " + z);
+    // console.log("Angular velocity along the X-axis " + x);
+    // console.log("Angular velocity along the Y-axis " + y);
+    // console.log("Angular velocity along the Z-axis " + z);
 
-    // camera.lookAt(new Vector3());
-    // camera.updateProjectionMatrix();
+    camera.position.x += x;
+    camera.position.y += y;
+    camera.position.z += z;
+
+    camera.lookAt(new Vector3());
+    camera.updateProjectionMatrix();
   };
 
   return {
