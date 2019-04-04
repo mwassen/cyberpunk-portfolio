@@ -227,12 +227,15 @@ const LogoBg = browserState => {
       1 / (height * pixelRatio);
   };
 
+  // Triggered by scroll events on page
   const scroll = yScrollPosition => {
     // Change camera position
     shader.uniforms.scroll.value = yScrollPosition / 750000;
     camera.position.x = 1 + yScrollPosition / 55.0;
     camera.position.y = 1 + yScrollPosition / 55.0;
     camera.zoom = 1 + yScrollPosition / 55.0;
+
+    composer.passes[1].radius = 0.15 + yScrollPosition / 1500;
 
     // Change logo glitching
     if (

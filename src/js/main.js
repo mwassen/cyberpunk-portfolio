@@ -53,7 +53,7 @@ threeDiv.appendChild(threeBackground.domElement);
 
 // Show scroll indicator
 setTimeout(() => {
-  scrollSvg.style.opacity = 1;
+  if (window.scrollY === 0) scrollSvg.style.opacity = 1;
 }, 2500);
 
 // EVENTS
@@ -87,9 +87,11 @@ window.addEventListener("scroll", () => {
   }
 
   // Fade in/out written content
-  if (window.scrollY > 200) {
-    writtenContent.style.opacity = 1;
-    contentBg.style.opacity = 0.7;
+  if (window.scrollY > window.innerHeight / 2) {
+    contentBg.style.opacity = 0.75;
+    setTimeout(() => {
+      writtenContent.style.opacity = 1;
+    }, 300);
   } else {
     writtenContent.style.opacity = 0;
     contentBg.style.opacity = 0;
@@ -98,7 +100,7 @@ window.addEventListener("scroll", () => {
 // Mouse effects for project Divs
 projectDivs.forEach((project, ind) => {
   // Add links to project divs
-  const url = ind === 0 ? "/tapehiss/index.html" : "/musicforecast/index.html";
+  const url = ind === 0 ? "/tapefumes/index.html" : "/musicforecast/index.html";
   project.onclick = () => window.open(url);
 
   // Add github links to projects in on desktop
