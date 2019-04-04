@@ -68,13 +68,13 @@ if (!onMobile) {
       window.innerHeight
     ]);
   });
-  if (devMode) {
-    let gyroscope = new Gyroscope({ frequency: 60 });
-    gyroscope.addEventListener("reading", () => {
-      threeBackground.gyro([gyroscope.x, gyroscope.y, gyroscope.z]);
-    });
-    gyroscope.start();
-  }
+  // if (devMode) {
+  //   let gyroscope = new Gyroscope({ frequency: 60 });
+  //   gyroscope.addEventListener("reading", () => {
+  //     threeBackground.gyro([gyroscope.x, gyroscope.y, gyroscope.z]);
+  //   });
+  //   gyroscope.start();
+  // }
 }
 window.addEventListener("scroll", () => {
   threeBackground.scroll(window.scrollY);
@@ -98,7 +98,7 @@ window.addEventListener("scroll", () => {
 // Mouse effects for project Divs
 projectDivs.forEach((project, ind) => {
   // Add links to project divs
-  const url = ind === 0 ? "/tapehiss" : "/musicforecast";
+  const url = ind === 0 ? "/tapehiss/index.html" : "/musicforecast/index.html";
   project.onclick = () => window.open(url);
 
   // Add github links to projects in on desktop
