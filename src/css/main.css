@@ -108,13 +108,13 @@ body {
   background-color: rgba(169, 115, 212, 0.1);
 }
 
-.work-project:nth-child(2):hover {
+/* .work-project:nth-child(2):hover {
   background-image: url("../assets/tapebg.png");
 }
 
 .work-project:nth-child(3):hover {
   background-image: url("../assets/musicbg.png");
-}
+} */
 
 video {
   width: 18%;

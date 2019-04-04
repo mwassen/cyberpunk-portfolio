@@ -7,7 +7,7 @@ import { Vector2 } from "three-full/sources/math/Vector2";
 import { Vector3 } from "three-full/sources/math/Vector3";
 import { RenderPass } from "three-full/sources/postprocessing/RenderPass";
 import { ShaderPass } from "three-full/sources/postprocessing/ShaderPass";
-import { GlitchPass } from "three-full/sources/postprocessing/GlitchPass";
+import { GlitchPass } from "./GlitchPassMod";
 import { UnrealBloomPass } from "three-full/sources/postprocessing/UnrealBloomPass";
 import { EffectComposer } from "three-full/sources/postprocessing/EffectComposer";
 import { FilmPass } from "three-full/sources/postprocessing/FilmPass";
@@ -44,6 +44,14 @@ const LogoBg = browserState => {
     vertexShader: vShader,
     fragmentShader: fShader
   });
+
+  // dev mode
+  const devMode = process.env.NODE_ENV === "development";
+  const statsWidget = devMode ? new Stats() : null;
+  if (devMode) {
+    statsWidget.showPanel(0);
+    document.body.appendChild(statsWidget.dom);
+  }
 
   const composer = (() => {
     const renderPass = new RenderPass(scene, camera);
@@ -101,7 +109,7 @@ const LogoBg = browserState => {
           resolve(logoMesh);
         },
         xhr => {
-          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+          if (devMode) console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
         },
         error => {
           reject(error);
@@ -115,14 +123,6 @@ const LogoBg = browserState => {
   //     load
   //   })
   // }
-
-  // dev mode
-  const devMode = process.env.NODE_ENV === "development";
-  const statsWidget = devMode ? new Stats() : null;
-  if (devMode) {
-    statsWidget.showPanel(0);
-    document.body.appendChild(statsWidget.dom);
-  }
 
   const updateCamera = () => {
     // Fit model to screen;
