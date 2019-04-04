@@ -12,6 +12,8 @@ if (WebGL.isWebGLAvailable() === false) {
   document.body.innerHTML = WebGL.getWebGLErrorMessage();
 }
 
+const devMode = process.env.NODE_ENV === "development";
+
 // let logoMesh; // Logo model for global access
 let scale = 70;
 
@@ -44,6 +46,7 @@ const threeBackground = LogoBackground({
   width,
   height,
   onMobile,
+  devMode,
   scale
 });
 threeDiv.appendChild(threeBackground.domElement);
@@ -65,6 +68,13 @@ if (!onMobile) {
       window.innerHeight
     ]);
   });
+  if (!devMode) {
+    let gyroscope = new Gyroscope({ frequency: 60 });
+    gyroscope.addEventListener("reading", () => {
+      threeBackground.gyro([gyroscope.x, gyroscope.y, gyroscope.z]);
+    });
+    gyroscope.start();
+  }
 }
 window.addEventListener("scroll", () => {
   threeBackground.scroll(window.scrollY);
@@ -88,7 +98,7 @@ window.addEventListener("scroll", () => {
 // Mouse effects for project Divs
 projectDivs.forEach((project, ind) => {
   // Add links to project divs
-  const url = ind === 0 ? "one" : "two";
+  const url = ind === 0 ? "/tapehiss" : "/musicforecast";
   project.onclick = () => window.open(url);
 
   // Add github links to projects in on desktop

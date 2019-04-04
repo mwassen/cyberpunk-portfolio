@@ -26,7 +26,7 @@ import fShader from "../shaders/fragment1.glsl";
 import Stats from "stats-js";
 
 const LogoBg = browserState => {
-  let { width, height, onMobile, scale } = browserState;
+  let { width, height, onMobile, devMode, scale } = browserState;
 
   // global vars
   const yOffset = onMobile ? 0.15 : 0;
@@ -46,7 +46,6 @@ const LogoBg = browserState => {
   });
 
   // dev mode
-  const devMode = process.env.NODE_ENV === "development";
   const statsWidget = devMode ? new Stats() : null;
   if (devMode) {
     statsWidget.showPanel(0);
@@ -251,7 +250,24 @@ const LogoBg = browserState => {
     camera.updateProjectionMatrix();
   };
 
-  return { domElement: renderer.domElement, resize, reorient, scroll };
+  const gyro = rotation => {
+    const [x, y, z] = rotation;
+
+    console.log("Angular velocity along the X-axis " + x);
+    console.log("Angular velocity along the Y-axis " + y);
+    console.log("Angular velocity along the Z-axis " + z);
+
+    // camera.lookAt(new Vector3());
+    // camera.updateProjectionMatrix();
+  };
+
+  return {
+    gyro,
+    domElement: renderer.domElement,
+    reorient,
+    resize,
+    scroll
+  };
 };
 
 export default LogoBg;
