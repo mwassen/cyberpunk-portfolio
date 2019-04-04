@@ -5,7 +5,7 @@
   "main": "src/js/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel src/index.html",
+    "dev": "parcel src/index.html --https",
     "prod": "parcel build src/index.html -d docs && cp -a projects/. docs/"
   },
   "repository": {

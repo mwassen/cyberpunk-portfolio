@@ -68,7 +68,7 @@ if (!onMobile) {
       window.innerHeight
     ]);
   });
-  if (!devMode) {
+  if (devMode) {
     let gyroscope = new Gyroscope({ frequency: 60 });
     gyroscope.addEventListener("reading", () => {
       threeBackground.gyro([gyroscope.x, gyroscope.y, gyroscope.z]);
