@@ -31,7 +31,7 @@ body {
   max-width: 600px;
   background-color: black;
   opacity: 0;
-  transition: opacity linear 0.4s;
+  transition: opacity linear 0.5s;
 }
 
 @media (min-width: 600px) {
@@ -59,7 +59,7 @@ body {
   justify-content: center;
   color: rgb(89, 120, 214);
   opacity: 0;
-  transition: opacity linear 0.4s;
+  transition: opacity linear 0.5s;
   font-family: "IBM Plex Mono", monospace;
   font-size: 18px;
 }
