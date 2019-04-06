@@ -20,6 +20,7 @@ let scale = 70;
 // Window sizing
 let width = window.innerWidth;
 let height = window.innerHeight;
+const browserPixelRatio = window.devicePixelRatio;
 
 // element references
 const scrollSvg = document.getElementById("scroll-marker");
@@ -45,6 +46,7 @@ if (onMobile) {
 const threeBackground = LogoBackground({
   width,
   height,
+  browserPixelRatio,
   onMobile,
   devMode,
   scale
@@ -57,49 +59,37 @@ setTimeout(() => {
 }, 2500);
 
 // EVENTS
-if (!onMobile) {
-  window.addEventListener("resize", () => {
-    threeBackground.resize([window.innerWidth, window.innerHeight]);
-  });
-} else {
-  window.addEventListener("orientationchange", () => {
-    threeBackground.reorient(screen.orientation.angle, [
-      window.innerWidth,
-      window.innerHeight
-    ]);
-  });
-  // if (devMode) {
-  //   let gyroscope = new Gyroscope({ frequency: 60 });
-  //   gyroscope.addEventListener("reading", () => {
-  //     threeBackground.gyro([gyroscope.x, gyroscope.y, gyroscope.z]);
-  //   });
-  //   gyroscope.start();
-  // }
-}
+// resize/reorient events
+window.addEventListener("resize", () => {
+  threeBackground.resize([window.innerWidth, window.innerHeight]);
+});
+
 let textActive = false;
 window.addEventListener("scroll", () => {
-  threeBackground.scroll(window.scrollY);
+  if (window.scrollY >= 0) {
+    threeBackground.scroll(window.scrollY);
 
-  // Fade in/out scroll indicator
-  if (window.scrollY > 0) {
-    scrollSvg.style.opacity = 0;
-  } else if (window.scrollY === 0) {
-    scrollSvg.style.opacity = 1;
-  }
-
-  // Fade in/out written content
-  if (window.scrollY > window.innerHeight / 2) {
-    contentBg.style.opacity = 0.75;
-    if (!textActive) {
-      textActive = true;
-      setTimeout(() => {
-        writtenContent.style.opacity = 1;
-      }, 200);
+    // Fade in/out scroll indicator
+    if (window.scrollY > 0) {
+      scrollSvg.style.opacity = 0;
+    } else if (window.scrollY === 0) {
+      scrollSvg.style.opacity = 1;
     }
-  } else {
-    contentBg.style.opacity = 0;
-    writtenContent.style.opacity = 0;
-    textActive = false;
+
+    // Fade in/out written content
+    if (window.scrollY > window.innerHeight / 2) {
+      contentBg.style.opacity = 0.75;
+      if (!textActive) {
+        textActive = true;
+        setTimeout(() => {
+          writtenContent.style.opacity = 1;
+        }, 200);
+      }
+    } else {
+      contentBg.style.opacity = 0;
+      writtenContent.style.opacity = 0;
+      textActive = false;
+    }
   }
 });
 // Mouse effects for project Divs

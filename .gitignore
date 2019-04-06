@@ -2,6 +2,7 @@ node_modules/
 reference/
 dist/
 projects/
+.vscode
 .cache/
 .prettierrc
 CNAME

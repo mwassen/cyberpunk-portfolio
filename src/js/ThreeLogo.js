@@ -26,7 +26,14 @@ import fShader from "../shaders/fragment1.glsl";
 import Stats from "stats-js";
 
 const LogoBg = browserState => {
-  let { width, height, onMobile, devMode, scale } = browserState;
+  let {
+    width,
+    height,
+    browserPixelRatio,
+    onMobile,
+    devMode,
+    scale
+  } = browserState;
 
   // global vars
   const yOffset = onMobile ? 0.15 : 0;
@@ -88,7 +95,7 @@ const LogoBg = browserState => {
   })();
 
   // MODEL
-  const model = (modelScale => {
+  const model = (() => {
     return new Promise((resolve, reject) => {
       const loader = new GLTFLoader();
       loader.load(
@@ -96,7 +103,7 @@ const LogoBg = browserState => {
         gltf => {
           let logoMesh = gltf.scene.children[0];
           logoMesh.material = shader;
-          logoMesh.scale.set(modelScale, modelScale, modelScale);
+          // logoMesh.scale.set(modelScale, modelScale, modelScale);
 
           // Set model rotation to fill screen
           // console.log({ width, height, aspectRatio });
@@ -117,11 +124,17 @@ const LogoBg = browserState => {
     });
   })(scale).catch(error => console.log(error));
 
-  // const setScale = (scale) => {
-  //   model.then(loadedModel => {
-  //     load
-  //   })
-  // }
+  // Changes scale based on device dimensions and pixelratio, changes on resize/rerorient events
+  const setScale = (width, height) => {
+    let scale;
+    if (width > height || width > 720) {
+      scale = width / (7 * browserPixelRatio);
+    } else scale = height / (4.5 * browserPixelRatio);
+    model.then(loadedModel => {
+      loadedModel.scale.set(scale, scale, scale);
+    });
+  };
+  setScale(width, height);
 
   const updateCamera = () => {
     // Fit model to screen;
@@ -182,41 +195,21 @@ const LogoBg = browserState => {
   animate();
 
   const resize = dimensions => {
+    // Skip mobile toolbar hide/show
+    if (Math.abs(dimensions[1] - height) < 70 && onMobile) return;
+
     [width, height] = dimensions;
 
-    model.then(loadedModel => {
-      if (loadedModel && width < 720) {
-        loadedModel.rotation.y = (720 - width) / -500;
-      }
-    });
-
-    updateCamera();
-
-    const pixelRatio = renderer.getPixelRatio();
-    composer.passes[4].material.uniforms["resolution"].value.x =
-      1 / (width * pixelRatio);
-    composer.passes[4].material.uniforms["resolution"].value.y =
-      1 / (height * pixelRatio);
-  };
-
-  const reorient = (angle, dimensions) => {
-    [width, height] = dimensions;
-
-    console.log(angle);
-    if (angle % 180 === 0) {
-      width = dimensions[1] + 70;
-      height = dimensions[0];
-    } else {
-      width = dimensions[1] + 70;
-      height = dimensions[0];
-    }
+    if (onMobile) height += 70;
 
     model.then(loadedModel => {
       if (loadedModel && width > 720) loadedModel.rotation.y = 0;
-      if (loadedModel && width < 720) {
+      else if (loadedModel && width < 720) {
         loadedModel.rotation.y = (720 - width) / -500;
       }
     });
+
+    setScale(width, height);
 
     updateCamera();
 
@@ -226,6 +219,34 @@ const LogoBg = browserState => {
     composer.passes[4].material.uniforms["resolution"].value.y =
       1 / (height * pixelRatio);
   };
+
+  // const reorient = (angle, dimensions) => {
+  //   [width, height] = dimensions;
+
+  //   console.log(angle);
+  //   if (angle % 180 === 0) {
+  //     width = dimensions[1] + 70;
+  //     height = dimensions[0];
+  //   } else {
+  //     width = dimensions[1] + 70;
+  //     height = dimensions[0];
+  //   }
+
+  //   model.then(loadedModel => {
+  //     if (loadedModel && width > 720) loadedModel.rotation.y = 0;
+  //     if (loadedModel && width < 720) {
+  //       loadedModel.rotation.y = (720 - width) / -500;
+  //     }
+  //   });
+
+  //   updateCamera();
+
+  //   const pixelRatio = renderer.getPixelRatio();
+  //   composer.passes[4].material.uniforms["resolution"].value.x =
+  //     1 / (width * pixelRatio);
+  //   composer.passes[4].material.uniforms["resolution"].value.y =
+  //     1 / (height * pixelRatio);
+  // };
 
   // Triggered by scroll events on page
   const scroll = yScrollPosition => {
@@ -274,7 +295,7 @@ const LogoBg = browserState => {
   return {
     // gyro,
     domElement: renderer.domElement,
-    reorient,
+    // reorient,
     resize,
     scroll
   };
