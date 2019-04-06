@@ -121,8 +121,10 @@ const LogoBg = browserState => {
   const setScale = (width, height) => {
     let scale;
     if (width > height || width > 720) {
-      scale = width / (7 * browserPixelRatio);
-    } else scale = height / (4.5 * browserPixelRatio);
+      scale = (width / height) * browserPixelRatio * 25;
+    } else {
+      scale = (width / height) * browserPixelRatio * 40;
+    }
     model.then(loadedModel => {
       loadedModel.scale.set(scale, scale, scale);
     });
@@ -166,11 +168,10 @@ const LogoBg = browserState => {
 
     // Hover animations on model
     model.then(loadedModel => {
-      // logoMesh.rotation.x = Math.sin(frame / 100);
-      // logoMesh.rotation.z = Math.sin(frame / 50);
-      loadedModel.rotation.z = Math.sin(frame / 400) / 100;
       loadedModel.rotation.x = Math.sin(frame / 1000) / 40 - 100;
       loadedModel.rotation.y += Math.sin(frame / 400) / 5000;
+      loadedModel.rotation.z = Math.sin(frame / 400) / 100;
+
       loadedModel.position.set(0, yOffset + Math.sin(frame / 200) / 75, 0);
     });
 
@@ -179,8 +180,8 @@ const LogoBg = browserState => {
 
     // Shader time var
     shader.uniforms.time.value = frame / 10;
-    composer.render();
 
+    composer.render();
     frame++;
 
     if (devMode) statsWidget.end();
