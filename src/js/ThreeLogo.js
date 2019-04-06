@@ -26,14 +26,7 @@ import fShader from "../shaders/fragment1.glsl";
 import Stats from "stats-js";
 
 const LogoBg = browserState => {
-  let {
-    width,
-    height,
-    browserPixelRatio,
-    onMobile,
-    devMode,
-    scale
-  } = browserState;
+  let { width, height, browserPixelRatio, onMobile, devMode } = browserState;
 
   // global vars
   const yOffset = onMobile ? 0.15 : 0;
@@ -59,6 +52,7 @@ const LogoBg = browserState => {
     document.body.appendChild(statsWidget.dom);
   }
 
+  // FX
   const composer = (() => {
     const renderPass = new RenderPass(scene, camera);
 
@@ -97,21 +91,20 @@ const LogoBg = browserState => {
   // MODEL
   const model = (() => {
     return new Promise((resolve, reject) => {
+      composer.passes[3].goWild = true;
       const loader = new GLTFLoader();
       loader.load(
         logo3d,
         gltf => {
           let logoMesh = gltf.scene.children[0];
           logoMesh.material = shader;
-          // logoMesh.scale.set(modelScale, modelScale, modelScale);
 
           // Set model rotation to fill screen
-          // console.log({ width, height, aspectRatio });
           if (width < 720) logoMesh.rotation.y = (720 - width) / -500;
           if (onMobile) logoMesh.position.set(0, yOffset, 0);
 
+          frame = 0;
           scene.add(logoMesh);
-          composer.passes[3].goWild = true;
           resolve(logoMesh);
         },
         xhr => {
@@ -122,7 +115,7 @@ const LogoBg = browserState => {
         }
       );
     });
-  })(scale).catch(error => console.log(error));
+  })().catch(error => console.log(error));
 
   // Changes scale based on device dimensions and pixelratio, changes on resize/rerorient events
   const setScale = (width, height) => {
@@ -136,6 +129,7 @@ const LogoBg = browserState => {
   };
   setScale(width, height);
 
+  // CAMERA
   const updateCamera = () => {
     // Fit model to screen;
     const aspect = width / height;
@@ -165,6 +159,7 @@ const LogoBg = browserState => {
   };
   updateCamera();
 
+  // ANIMATION
   let frame = 0;
   const animate = () => {
     if (devMode) statsWidget.begin();
@@ -194,9 +189,10 @@ const LogoBg = browserState => {
   };
   animate();
 
+  // Called on resize/reorient events
   const resize = dimensions => {
     // Skip mobile toolbar hide/show
-    if (Math.abs(dimensions[1] - height) < 70 && onMobile) return;
+    if (onMobile && Math.abs(dimensions[1] - height) < 70) return;
 
     [width, height] = dimensions;
 
@@ -210,7 +206,6 @@ const LogoBg = browserState => {
     });
 
     setScale(width, height);
-
     updateCamera();
 
     const pixelRatio = renderer.getPixelRatio();
@@ -219,34 +214,6 @@ const LogoBg = browserState => {
     composer.passes[4].material.uniforms["resolution"].value.y =
       1 / (height * pixelRatio);
   };
-
-  // const reorient = (angle, dimensions) => {
-  //   [width, height] = dimensions;
-
-  //   console.log(angle);
-  //   if (angle % 180 === 0) {
-  //     width = dimensions[1] + 70;
-  //     height = dimensions[0];
-  //   } else {
-  //     width = dimensions[1] + 70;
-  //     height = dimensions[0];
-  //   }
-
-  //   model.then(loadedModel => {
-  //     if (loadedModel && width > 720) loadedModel.rotation.y = 0;
-  //     if (loadedModel && width < 720) {
-  //       loadedModel.rotation.y = (720 - width) / -500;
-  //     }
-  //   });
-
-  //   updateCamera();
-
-  //   const pixelRatio = renderer.getPixelRatio();
-  //   composer.passes[4].material.uniforms["resolution"].value.x =
-  //     1 / (width * pixelRatio);
-  //   composer.passes[4].material.uniforms["resolution"].value.y =
-  //     1 / (height * pixelRatio);
-  // };
 
   // Triggered by scroll events on page
   const scroll = yScrollPosition => {
@@ -274,28 +241,8 @@ const LogoBg = browserState => {
     camera.updateProjectionMatrix();
   };
 
-  // const gyro = rotation => {
-  //   const normalisedRot = rotation.map(dir => {
-  //     return dir / (Math.PI * 2) - 0.5;
-  //   });
-  //   const [x, y, z] = normalisedRot;
-
-  //   // console.log("Angular velocity along the X-axis " + x);
-  //   // console.log("Angular velocity along the Y-axis " + y);
-  //   // console.log("Angular velocity along the Z-axis " + z);
-
-  //   camera.position.x += x;
-  //   camera.position.y += y;
-  //   camera.position.z += z;
-
-  //   camera.lookAt(new Vector3());
-  //   camera.updateProjectionMatrix();
-  // };
-
   return {
-    // gyro,
     domElement: renderer.domElement,
-    // reorient,
     resize,
     scroll
   };

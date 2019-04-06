@@ -40,15 +40,6 @@ body {
   }
 }
 
-/* #bgimg {
-  height: 100%;
-  width: 100%;
-  background-image: url("../assets/noise-texture.png");
-  background-blend-mode: multiply;
-  opacity: 0.1;
-  background-size: 64px;
-} */
-
 #main-container {
   width: 100vw;
   height: 100vh;
@@ -112,14 +103,6 @@ body {
 .work-project:hover {
   background-color: rgba(169, 115, 212, 0.1);
 }
-
-/* .work-project:nth-child(2):hover {
-  background-image: url("../assets/tapebg.png");
-}
-
-.work-project:nth-child(3):hover {
-  background-image: url("../assets/musicbg.png");
-} */
 
 video {
   width: 18%;

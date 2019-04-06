@@ -14,9 +14,6 @@ if (WebGL.isWebGLAvailable() === false) {
 
 const devMode = process.env.NODE_ENV === "development";
 
-// let logoMesh; // Logo model for global access
-let scale = 70;
-
 // Window sizing
 let width = window.innerWidth;
 let height = window.innerHeight;
@@ -39,7 +36,6 @@ if (onMobile) {
   height = mobileHeight;
   threeDiv.style.height = mobileHeight + "px";
   scrollSvg.style.marginBottom = "75px";
-  scale = 60;
 }
 
 // THREE BACKGROUND
@@ -48,8 +44,7 @@ const threeBackground = LogoBackground({
   height,
   browserPixelRatio,
   onMobile,
-  devMode,
-  scale
+  devMode
 });
 threeDiv.appendChild(threeBackground.domElement);
 
@@ -59,11 +54,12 @@ setTimeout(() => {
 }, 2500);
 
 // EVENTS
-// resize/reorient events
+// Resize/reorient events
 window.addEventListener("resize", () => {
   threeBackground.resize([window.innerWidth, window.innerHeight]);
 });
 
+// Scroll events
 let textActive = false;
 window.addEventListener("scroll", () => {
   if (window.scrollY >= 0) {
@@ -92,13 +88,14 @@ window.addEventListener("scroll", () => {
     }
   }
 });
+
 // Mouse effects for project Divs
 projectDivs.forEach((project, ind) => {
   // Add links to project divs
   const url = ind === 0 ? "./tapefumes" : "./musicforecast";
   project.onclick = () => window.open(url);
 
-  // Add github links to projects in on desktop
+  // Add github links to projects on desktop
   if (!onMobile) {
     const ghLink = project.querySelector(".github-link");
     project.addEventListener("mouseenter", () => {
@@ -118,7 +115,6 @@ projectDivs.forEach((project, ind) => {
       project.onclick = () => window.open(url);
     });
   } else {
-    // project.style.backgroundColor = "rgba(169, 115, 212, 0.08)";
     project.style.border = "1px dashed rgba(64, 104, 224, 0.3)";
   }
 });
