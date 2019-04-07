@@ -36,6 +36,15 @@ if (onMobile) {
   height = mobileHeight;
   threeDiv.style.height = mobileHeight + "px";
   scrollSvg.style.marginBottom = "75px";
+
+  // Reorganise and add disclaimer to tape fumes
+  document
+    .getElementsByClassName("project-description")
+    .item(0)
+    .getElementsByTagName("p")
+    .item(0).innerHTML += " (Desktop only)";
+  const workDiv = document.getElementById("work");
+  workDiv.insertBefore(workDiv.children.item(2), workDiv.children.item(1));
 }
 
 // THREE BACKGROUND
