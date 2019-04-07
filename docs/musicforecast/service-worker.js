@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/musicforecast/precache-manifest.69dd1600e6e40a8bc5e87ffaa8c32ed7.js"
+  "/musicforecast/precache-manifest.cd97bac67cda307155732cb7a2010699.js"
 );
 
 workbox.clientsClaim();
