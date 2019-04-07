@@ -43,6 +43,7 @@ if (onMobile) {
     .item(0)
     .getElementsByTagName("p")
     .item(0).innerHTML += " (Desktop only)";
+
   const workDiv = document.getElementById("work");
   workDiv.insertBefore(workDiv.children.item(2), workDiv.children.item(1));
 }
