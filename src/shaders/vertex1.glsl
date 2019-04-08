@@ -10,21 +10,21 @@ uniform float intro;
 uniform mat4 projectionMatrix;
 uniform mat4 modelViewMatrix;
 
-// varying vec2 vUv;
+varying vec2 vUv;
 varying vec3 nposition;
 varying vec3 vNormal;
 
-void main () {
-	// vUv = uv;
-
-	vNormal = normal;
-
-	vec3 offset = position;
-	float dist =  (sin(time / 10.0) + 1.0) * 0.05 * scroll + scroll;
-
-	offset.xyz += normal * dist;
-
-	nposition = position;
-
-	gl_Position = projectionMatrix * modelViewMatrix * vec4(offset, 1.0);
+void main(){
+	vUv=uv;
+	
+	vNormal=normal;
+	
+	vec3 offset=position;
+	float dist=(sin(time/10.)+1.)*.05*scroll+scroll;
+	
+	offset.xyz+=normal*dist;
+	
+	nposition=position;
+	
+	gl_Position=projectionMatrix*modelViewMatrix*vec4(offset,1.);
 }

@@ -109,10 +109,12 @@ projectDivs.forEach((project, ind) => {
   if (!onMobile) {
     const ghLink = project.querySelector(".github-link");
     project.addEventListener("mouseenter", () => {
+      threeBackground.hoverIn();
       ghLink.style.opacity = 0.25;
       ghLink.style.cursor = "pointer";
     });
     project.addEventListener("mouseleave", () => {
+      threeBackground.hoverOut();
       ghLink.style.opacity = 0;
       ghLink.style.cursor = "none";
     });

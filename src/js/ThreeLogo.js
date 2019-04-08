@@ -38,6 +38,7 @@ const LogoBg = browserState => {
   const shader = new RawShaderMaterial({
     uniforms: {
       time: { value: 1.0 },
+      hoverVal: { value: 0.0 },
       scroll: { value: 0.0 },
       resolution: { value: new Vector2() }
     },
@@ -242,10 +243,32 @@ const LogoBg = browserState => {
     camera.updateProjectionMatrix();
   };
 
+  let hoverActive = false;
+  const hoverIn = () => {
+    hoverActive = true;
+    let countUp = setInterval(() => {
+      shader.uniforms.hoverVal.value += 0.01;
+      if (!hoverActive || shader.uniforms.hoverVal.value >= 1) {
+        clearInterval(countUp);
+      }
+    }, 10);
+  };
+  const hoverOut = () => {
+    hoverActive = false;
+    let countDown = setInterval(() => {
+      shader.uniforms.hoverVal.value -= 0.01;
+      if (hoverActive || shader.uniforms.hoverVal.value <= 0) {
+        clearInterval(countDown);
+      }
+    }, 5);
+  };
+
   return {
     domElement: renderer.domElement,
     resize,
-    scroll
+    scroll,
+    hoverIn,
+    hoverOut
   };
 };
 
