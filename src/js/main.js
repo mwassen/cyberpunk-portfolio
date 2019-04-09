@@ -105,16 +105,16 @@ projectDivs.forEach((project, ind) => {
   const url = ind === 0 ? "./tapefumes" : "./musicforecast";
   project.onclick = () => window.open(url);
 
-  // Add github links to projects on desktop
+  // Add github links & hover effects to projects on desktop
   if (!onMobile) {
     const ghLink = project.querySelector(".github-link");
     project.addEventListener("mouseenter", () => {
-      threeBackground.hoverIn();
+      threeBackground.hoverIn(ind);
       ghLink.style.opacity = 0.25;
       ghLink.style.cursor = "pointer";
     });
     project.addEventListener("mouseleave", () => {
-      threeBackground.hoverOut();
+      threeBackground.hoverOut(ind);
       ghLink.style.opacity = 0;
       ghLink.style.cursor = "none";
     });

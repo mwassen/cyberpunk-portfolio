@@ -3,6 +3,7 @@ precision highp float;
 uniform float time;
 uniform float scroll;
 uniform float hoverVal;
+uniform float index;
 
 varying vec2 vUv;
 varying vec3 vNormal;
@@ -16,11 +17,7 @@ void main(){
 	vec4 colorA=vec4(.02,0.,(sin(time/vNormal.y)+.5)*.4,norm1(.01)+.5);
 	vec4 colorB=vec4(norm1(1.)+.5,.2,1.,(norm1(.01)+.5)*5.);
 	
-	vec4 untouched=mix(colorA,colorB,sin((time*vNormal.y)/10.));
-	
-	vec4 messy=vec4(vNormal.y*sin(pow(vUv.x,time/10.)),.2,.1,.5);
-	
-	vec4 color=mix(untouched,messy,hoverVal);
+	vec4 color=mix(colorA,colorB,sin((time*vNormal.y)/10.));
 	
 	gl_FragColor=color;
 }

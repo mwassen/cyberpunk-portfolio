@@ -6,7 +6,7 @@ attribute vec3 normal;
 
 uniform float time;
 uniform float scroll;
-uniform float intro;
+uniform float hoverVal;
 uniform mat4 projectionMatrix;
 uniform mat4 modelViewMatrix;
 

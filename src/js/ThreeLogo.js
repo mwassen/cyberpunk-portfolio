@@ -19,7 +19,8 @@ import logo3d from "../assets/mswsn3d.glb";
 
 // SHADERS
 import vShader from "../shaders/vertex1.glsl";
-import fShader from "../shaders/fragment1.glsl";
+import fShaderDesktop from "../shaders/fragment-desktop.glsl";
+import fShaderMobile from "../shaders/fragment-mobile.glsl";
 
 // // DEV STUFF
 // import * as dat from "dat.gui";
@@ -39,11 +40,12 @@ const LogoBg = browserState => {
     uniforms: {
       time: { value: 1.0 },
       hoverVal: { value: 0.0 },
+      index: { value: 0.5 },
       scroll: { value: 0.0 },
       resolution: { value: new Vector2() }
     },
     vertexShader: vShader,
-    fragmentShader: fShader
+    fragmentShader: onMobile ? fShaderMobile : fShaderDesktop
   });
 
   // dev mode
@@ -236,6 +238,8 @@ const LogoBg = browserState => {
       composer.passes[3].enabled = false;
     } else if (yScrollPosition === 0) {
       composer.passes[3].enabled = true;
+    } else if (yScrollPosition !== 0 && frame > 75) {
+      composer.passes[3].enabled = false;
     }
 
     // Update cameras
@@ -243,24 +247,39 @@ const LogoBg = browserState => {
     camera.updateProjectionMatrix();
   };
 
+  // Hover effects on shader
   let hoverActive = false;
-  const hoverIn = () => {
+  const hoverIn = ind => {
     hoverActive = true;
-    let countUp = setInterval(() => {
+    let countUpMain = setInterval(() => {
       shader.uniforms.hoverVal.value += 0.01;
       if (!hoverActive || shader.uniforms.hoverVal.value >= 1) {
-        clearInterval(countUp);
+        clearInterval(countUpMain);
+      }
+    }, 10);
+    let countDownInd = setInterval(() => {
+      shader.uniforms.index.value += ind === 1 ? 0.01 : -0.01;
+      if (
+        !hoverActive ||
+        shader.uniforms.index.value >= 1 ||
+        shader.uniforms.index.value <= 0
+      ) {
+        clearInterval(countDownInd);
       }
     }, 10);
   };
-  const hoverOut = () => {
+  const hoverOut = ind => {
     hoverActive = false;
-    let countDown = setInterval(() => {
+    let countDownMain = setInterval(() => {
+      shader.uniforms.index.value += ind === 1 ? -0.005 : 0.005;
       shader.uniforms.hoverVal.value -= 0.01;
       if (hoverActive || shader.uniforms.hoverVal.value <= 0) {
-        clearInterval(countDown);
+        clearInterval(countDownMain);
       }
     }, 5);
+    setTimeout(() => {
+      if (!hoverActive) shader.uniforms.index.value = 0.5;
+    }, 1000);
   };
 
   return {
