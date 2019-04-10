@@ -14,8 +14,6 @@ import { FilmPass } from "three-full/sources/postprocessing/FilmPass";
 import { FXAAShader } from "three-full/sources/shaders/FXAAShader";
 import { GLTFLoader } from "three-full/sources/loaders/GLTFLoader";
 
-// import glsl from "glslify";
-
 // 3D MODEL
 import logo3d from "../assets/mswsn3d.glb";
 
