@@ -85,7 +85,7 @@ const LogoBg = browserState => {
 
     const glitchPass = new GlitchPass();
     glitchPass.renderToScreen = false;
-    glitchPass.enabled = false;
+    // glitchPass.enabled = false;
 
     const fxaaPass = new ShaderPass(FXAAShader);
     fxaaPass.renderToScreen = true;
