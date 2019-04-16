@@ -48,6 +48,19 @@ const LogoBg = browserState => {
     fragmentShader: onMobile ? fShaderMobile : fShaderDesktop
   });
 
+  // const lutTexture = new TextureLoader();
+  // lutTexture.load(
+  //   lookupTex,
+  //   texture => {
+  //     shader.uniforms.uLookup.value = texture;
+  //     console.log(lutTexture);
+  //   },
+  //   undefined,
+  //   err => {
+  //     console.error(err);
+  //   }
+  // );
+
   // dev mode
   const statsWidget = devMode ? new Stats() : null;
   if (devMode) {
@@ -72,6 +85,7 @@ const LogoBg = browserState => {
 
     const glitchPass = new GlitchPass();
     glitchPass.renderToScreen = false;
+    glitchPass.enabled = false;
 
     const fxaaPass = new ShaderPass(FXAAShader);
     fxaaPass.renderToScreen = true;
@@ -236,8 +250,8 @@ const LogoBg = browserState => {
       !composer.passes[3].goWild
     ) {
       composer.passes[3].enabled = false;
-    } else if (yScrollPosition === 0) {
-      composer.passes[3].enabled = true;
+      // } else if (yScrollPosition === 0) {
+      //   composer.passes[3].enabled = true;
     } else if (yScrollPosition !== 0 && frame > 75) {
       composer.passes[3].enabled = false;
     }
