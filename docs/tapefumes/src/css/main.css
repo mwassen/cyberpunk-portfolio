@@ -1,0 +1,27 @@
+body {
+    margin: 0px 0px 0px 0px;
+    overflow: hidden;
+    background-image: url(../../src/assets/img/bg.png);
+    background-repeat: repeat;
+}
+
+#main {
+    width: 100vw;
+    height: 100vh;
+    /* margin: 50px 50px 50px 50px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 50vh;
+    align-items: center;
+    justify-content: space-around;
+}
