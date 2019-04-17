@@ -102,7 +102,7 @@ window.addEventListener("scroll", () => {
 // Mouse effects for project Divs
 projectDivs.forEach((project, ind) => {
   // Add links to project divs
-  const url = ind === 0 ? "./tapefumes" : "./musicforecast";
+  const url = ind === 0 ? "./tapefumes/" : "./musicforecast/";
   project.onclick = () => window.open(url);
 
   // Add github links & hover effects to projects on desktop

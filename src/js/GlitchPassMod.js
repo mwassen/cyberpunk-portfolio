@@ -51,7 +51,7 @@ GlitchPass.prototype = Object.assign(Object.create(Pass.prototype), {
     this.uniforms["byp"].value = 0;
 
     if (this.curF % this.randX == 0 || this.goWild == true) {
-      this.uniforms["amount"].value = Math.random() / 30;
+      this.uniforms["amount"].value = Math.random() / 40;
       this.uniforms["angle"].value = _Math.randFloat(-Math.PI, Math.PI);
       this.uniforms["seed_x"].value = _Math.randFloat(-1, 1);
       this.uniforms["seed_y"].value = _Math.randFloat(-1, 1);
