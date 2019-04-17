@@ -2,7 +2,7 @@
 
 "cnsglo1.png":
 {
-	"frame": {"x":0,"y":896,"w":408,"h":256},
+	"frame": {"x":256,"y":384,"w":408,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":408,"h":256},
@@ -18,7 +18,7 @@
 },
 "fire1.png":
 {
-	"frame": {"x":0,"y":256,"w":128,"h":128},
+	"frame": {"x":460,"y":0,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
@@ -26,7 +26,7 @@
 },
 "fire2.png":
 {
-	"frame": {"x":768,"y":128,"w":128,"h":128},
+	"frame": {"x":716,"y":0,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
@@ -34,7 +34,7 @@
 },
 "fire3.png":
 {
-	"frame": {"x":512,"y":128,"w":128,"h":128},
+	"frame": {"x":844,"y":0,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
@@ -42,7 +42,7 @@
 },
 "fire4.png":
 {
-	"frame": {"x":640,"y":128,"w":128,"h":128},
+	"frame": {"x":588,"y":0,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
@@ -50,7 +50,7 @@
 },
 "hammer-meter.png":
 {
-	"frame": {"x":896,"y":128,"w":16,"h":128},
+	"frame": {"x":0,"y":0,"w":16,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":128},
@@ -58,7 +58,7 @@
 },
 "hand-hammer1.png":
 {
-	"frame": {"x":504,"y":384,"w":256,"h":256},
+	"frame": {"x":0,"y":384,"w":256,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
@@ -66,7 +66,7 @@
 },
 "menu-hammer.png":
 {
-	"frame": {"x":0,"y":0,"w":64,"h":64},
+	"frame": {"x":16,"y":0,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -80,9 +80,17 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":408,"h":256},
 	"sourceSize": {"w":408,"h":256}
 },
+"pixel-logo.png":
+{
+	"frame": {"x":0,"y":128,"w":508,"h":92},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":508,"h":92},
+	"sourceSize": {"w":508,"h":92}
+},
 "plank1.png":
 {
-	"frame": {"x":0,"y":128,"w":512,"h":128},
+	"frame": {"x":0,"y":256,"w":512,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":128},
@@ -90,7 +98,7 @@
 },
 "plank2.png":
 {
-	"frame": {"x":128,"y":256,"w":512,"h":128},
+	"frame": {"x":508,"y":128,"w":512,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":128},
@@ -98,7 +106,7 @@
 },
 "plank3.png":
 {
-	"frame": {"x":444,"y":0,"w":512,"h":128},
+	"frame": {"x":512,"y":256,"w":512,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":128},
@@ -106,7 +114,7 @@
 },
 "recordbtn.png":
 {
-	"frame": {"x":364,"y":0,"w":80,"h":80},
+	"frame": {"x":380,"y":0,"w":80,"h":80},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":80},
@@ -122,7 +130,7 @@
 },
 "tapedeck-buttons1.png":
 {
-	"frame": {"x":304,"y":0,"w":60,"h":72},
+	"frame": {"x":260,"y":0,"w":60,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":72},
@@ -130,7 +138,7 @@
 },
 "tapedeck-buttons2.png":
 {
-	"frame": {"x":124,"y":0,"w":60,"h":72},
+	"frame": {"x":200,"y":0,"w":60,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":72},
@@ -138,7 +146,7 @@
 },
 "tapedeck-buttons3.png":
 {
-	"frame": {"x":64,"y":0,"w":60,"h":72},
+	"frame": {"x":80,"y":0,"w":60,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":72},
@@ -146,7 +154,7 @@
 },
 "tapedeck-buttons4.png":
 {
-	"frame": {"x":184,"y":0,"w":60,"h":72},
+	"frame": {"x":140,"y":0,"w":60,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":72},
@@ -154,7 +162,7 @@
 },
 "tapedeck-buttons5.png":
 {
-	"frame": {"x":244,"y":0,"w":60,"h":72},
+	"frame": {"x":320,"y":0,"w":60,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":72},
@@ -170,7 +178,7 @@
 },
 "tapeinsert-closed.png":
 {
-	"frame": {"x":408,"y":896,"w":488,"h":260},
+	"frame": {"x":504,"y":896,"w":488,"h":260},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":488,"h":260},
@@ -178,7 +186,7 @@
 },
 "tapeinsert-open.png":
 {
-	"frame": {"x":0,"y":384,"w":504,"h":248},
+	"frame": {"x":0,"y":896,"w":504,"h":248},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":248},
@@ -194,8 +202,8 @@
 	"version": "1.0",
 	"image": "sheetv1.png",
 	"format": "RGBA8888",
-	"size": {"w":968,"h":2016},
+	"size": {"w":1024,"h":2016},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:570ee0cecf39329af5520bf9c41d1eb2:e460a82828904748c49430b6219b939a:e9351694b174a8a6ccf707a990f96bcb$"
+	"smartupdate": "$TexturePacker:SmartUpdate:e02f8c28a1cad6bc7731ec8cb8361e4f:ab4d71ff80c154c68032a64f69b43fa7:e9351694b174a8a6ccf707a990f96bcb$"
 }
 }

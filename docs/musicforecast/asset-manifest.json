@@ -1,14 +1,14 @@
 {
-  "main.css": "/musicforecast/static/css/main.d84e7f0d.chunk.css",
-  "main.js": "/musicforecast/static/js/main.75586fec.chunk.js",
-  "main.js.map": "/musicforecast/static/js/main.75586fec.chunk.js.map",
+  "main.css": "/musicforecast/static/css/main.535d62c5.chunk.css",
+  "main.js": "/musicforecast/static/js/main.998c1a53.chunk.js",
+  "main.js.map": "/musicforecast/static/js/main.998c1a53.chunk.js.map",
   "runtime~main.js": "/musicforecast/static/js/runtime~main.11b91836.js",
   "runtime~main.js.map": "/musicforecast/static/js/runtime~main.11b91836.js.map",
   "static/js/2.b5ff5d64.chunk.js": "/musicforecast/static/js/2.b5ff5d64.chunk.js",
   "static/js/2.b5ff5d64.chunk.js.map": "/musicforecast/static/js/2.b5ff5d64.chunk.js.map",
   "index.html": "/musicforecast/index.html",
-  "precache-manifest.3906d936757336c6538707a96f0a56c0.js": "/musicforecast/precache-manifest.3906d936757336c6538707a96f0a56c0.js",
+  "precache-manifest.62e4e9c306e93eac6b7fdf358f3f86b0.js": "/musicforecast/precache-manifest.62e4e9c306e93eac6b7fdf358f3f86b0.js",
   "service-worker.js": "/musicforecast/service-worker.js",
-  "static/css/main.d84e7f0d.chunk.css.map": "/musicforecast/static/css/main.d84e7f0d.chunk.css.map",
+  "static/css/main.535d62c5.chunk.css.map": "/musicforecast/static/css/main.535d62c5.chunk.css.map",
   "static/media/logo.svg": "/musicforecast/static/media/logo.5d762816.svg"
 }
