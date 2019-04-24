@@ -51,7 +51,7 @@ body {
   color: rgb(89, 120, 214);
   opacity: 0;
   transition: opacity linear 0.5s;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 18px;
 }
 
@@ -59,7 +59,7 @@ body {
   font-weight: 400;
   width: 85vw;
   max-width: 500px;
-  user-select: none;
+  /* user-select: none; */
 }
 
 #buffer-top {
@@ -148,7 +148,8 @@ h2 {
 }
 
 h3 {
-  font-size: 18px;
+  font-weight: 200;
+  font-size: 20px;
   margin-top: 10px;
   margin-bottom: 5px;
 }
@@ -166,7 +167,7 @@ hr {
 
 #personal-links {
   font-size: 14px;
-  width: 220px;
+  width: 180px;
   display: flex;
   justify-content: space-between;
 }
