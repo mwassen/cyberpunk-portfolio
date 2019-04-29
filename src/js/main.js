@@ -31,13 +31,14 @@ const onMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
   navigator.userAgent
 );
 
+// Avoid URL-bar blocking elements on mobile
 if (onMobile) {
   const mobileHeight = height + 56;
   height = mobileHeight;
   threeDiv.style.height = mobileHeight + "px";
   scrollSvg.style.marginBottom = "75px";
 
-  // Reorganise and add disclaimer to tape fumes
+  // Reorganise and add desktop-only disclaimer to tape fumes
   document
     .getElementsByClassName("project-description")
     .item(0)

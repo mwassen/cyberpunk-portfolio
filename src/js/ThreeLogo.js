@@ -138,7 +138,7 @@ const LogoBg = browserState => {
   const setScale = (width, height) => {
     let scale;
     if (width > height || width > 720) {
-      scale = (width / height) * browserPixelRatio * 25;
+      scale = (width / height) * browserPixelRatio * 20;
     } else {
       scale = (width / height) * browserPixelRatio * 40;
     }
