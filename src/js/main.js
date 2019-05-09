@@ -40,7 +40,7 @@ if (onMobile) {
 
   // Reorganise and add desktop-only disclaimer to tape fumes
   document
-    .getElementsByClassName("project-description")
+    .getElementsByClassName("project-content")
     .item(0)
     .getElementsByTagName("p")
     .item(0).innerHTML += " (Desktop only)";
@@ -109,15 +109,18 @@ projectDivs.forEach((project, ind) => {
   // Add github links & hover effects to projects on desktop
   if (!onMobile) {
     const ghLink = project.querySelector(".github-link");
+    // const frameWorks = project.querySelector(".frameworks");
     project.addEventListener("mouseenter", () => {
       threeBackground.hoverIn(ind);
       ghLink.style.opacity = 0.25;
       ghLink.style.cursor = "pointer";
+      // frameWorks.style.opacity = 0.5;
     });
     project.addEventListener("mouseleave", () => {
       threeBackground.hoverOut(ind);
       ghLink.style.opacity = 0;
       ghLink.style.cursor = "none";
+      // frameWorks.style.opacity = 0;
     });
     ghLink.addEventListener("mouseenter", () => {
       ghLink.style.opacity = 1;
@@ -128,6 +131,7 @@ projectDivs.forEach((project, ind) => {
       project.onclick = () => window.open(url);
     });
   } else {
+    // project.querySelector(".frameworks").style.opacity = 0.5;
     project.style.border = "1px dashed rgba(64, 104, 224, 0.3)";
   }
 });

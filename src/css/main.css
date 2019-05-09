@@ -48,10 +48,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: rgb(89, 120, 214);
+  color: rgb(166, 166, 226);
   opacity: 0;
   transition: opacity linear 0.5s;
   font-family: "IBM Plex Sans", sans-serif;
+
+  font-weight: 300;
   font-size: 18px;
 }
 
@@ -79,15 +81,14 @@ body {
 }
 
 #bio {
-  margin-top: 2px;
-  margin-bottom: 8px;
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
 
 .work-project {
   margin-left: -2%;
   margin-right: -2%;
   margin-bottom: 2%;
-  padding-bottom: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -108,55 +109,77 @@ video {
   width: 18%;
 }
 
-.project-text {
+.project-content {
+  display: grid;
+  grid-template-columns: 140px 12fr 1fr;
+  grid-gap: 10px;
   width: 96%;
+  height: 100%;
 }
 
-.project-header {
+.project-left {
+  grid-column: 1;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 20px;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
   margin-top: 14px;
 }
 
+.project-right {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.github-container {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .frameworks {
+  opacity: 0.6;
+  transition: opacity 0.4s;
   font-size: 12px;
 }
 
 .github-link {
   fill: white;
-  height: 20px;
+  width: 90%;
   opacity: 0;
   transition: opacity 0.4s;
   z-index: 4;
 }
 
 h1 {
-  font-family: "Rubik", sans-serif;
+  font-family: "Monda", sans-serif;
   font-weight: 500;
-  font-size: 36px;
-  margin-bottom: 6px;
+  font-size: 24px;
+  margin-bottom: 5px;
 }
 
 h2 {
-  font-family: "Rubik", sans-serif;
+  font-family: "Monda", sans-serif;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 16px;
   margin-bottom: 4px;
   font-style: bold;
 }
 
 h3 {
-  font-weight: 200;
+  font-weight: 300;
   font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin: 0px 0px 5px 0px;
 }
 
 p {
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 hr {

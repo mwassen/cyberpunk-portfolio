@@ -18,9 +18,11 @@ import { GLTFLoader } from "three-full/sources/loaders/GLTFLoader";
 import logo3d from "../assets/mswsn3d.glb";
 
 // SHADERS
-import vShader from "../shaders/vertex1.glsl";
-import fShaderDesktop from "../shaders/fragment-desktop.glsl";
-import fShaderMobile from "../shaders/fragment-mobile.glsl";
+import vShaderDesktop from "../shaders/desktop/vertex.glsl";
+import vShaderMobile from "../shaders/mobile/vertex.glsl";
+
+import fShaderDesktop from "../shaders/desktop/fragment.glsl";
+import fShaderMobile from "../shaders/mobile/fragment.glsl";
 
 // // DEV STUFF
 // import * as dat from "dat.gui";
@@ -44,7 +46,7 @@ const LogoBg = browserState => {
       scroll: { value: 0.0 },
       resolution: { value: new Vector2() }
     },
-    vertexShader: vShader,
+    vertexShader: onMobile ? vShaderMobile : vShaderDesktop,
     fragmentShader: onMobile ? fShaderMobile : fShaderDesktop
   });
 
