@@ -47,6 +47,8 @@ if (onMobile) {
 
   const workDiv = document.getElementById("work");
   workDiv.insertBefore(workDiv.children.item(2), workDiv.children.item(1));
+  // document.getElementsByClassName("project-content").style.gridTemplateColumns =
+  //   "140px 1fr";
 }
 
 // THREE BACKGROUND

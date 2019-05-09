@@ -52,13 +52,10 @@ body {
   opacity: 0;
   transition: opacity linear 0.5s;
   font-family: "IBM Plex Sans", sans-serif;
-
-  font-weight: 300;
   font-size: 18px;
 }
 
 #written-content {
-  font-weight: 400;
   width: 85vw;
   max-width: 500px;
   /* user-select: none; */
@@ -157,22 +154,18 @@ video {
 }
 
 h1 {
-  font-family: "Monda", sans-serif;
-  font-weight: 500;
-  font-size: 24px;
+  font-family: "Megrim", cursive;
+  font-size: 32px;
   margin-bottom: 5px;
 }
 
 h2 {
-  font-family: "Monda", sans-serif;
-  font-weight: 500;
   font-size: 16px;
   margin-bottom: 4px;
   font-style: bold;
 }
 
 h3 {
-  font-weight: 300;
   font-size: 20px;
   margin: 0px 0px 5px 0px;
 }
