@@ -155,7 +155,8 @@ video {
 .github-container {
   width: 22px;
   grid-column: 3;
-  margin: 10px 0px 10px 0px;
+  margin-top: auto;
+  margin-bottom: 20px;
 }
 
 .frameworks {
