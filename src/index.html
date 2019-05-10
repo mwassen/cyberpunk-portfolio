@@ -12,7 +12,7 @@
     />
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
     <link
-      href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Megrim"
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Monda"
       rel="stylesheet"
     />
   </head>
@@ -31,12 +31,45 @@
     <div id="main-container">
       <div id="written-content">
         <div id="blurb">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            id="mswsn-logo"
+            viewBox="0 0 104 18.5"
+          >
+            <title>mswsn logo</title>
+            <g id="Layer1" data-name="Layer 1">
+              <path
+                d="M17.5,0h-3a1,1,0,0,0-1,1V3.5a1,1,0,0,1-1,1h-2a1,1,0,0,1-1-1V1a1,1,0,0,0-1-1h-3a1,1,0,0,0-1,1V3.5a1,1,0,0,1-1,1H1a1,1,0,0,0-1,1v12a1,1,0,0,0,1,1H4a1,1,0,0,0,1-1V6A1,1,0,0,1,6,5H8A1,1,0,0,1,9,6V8.5a1,1,0,0,0,1,1h3a1,1,0,0,0,1-1V6a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V17.5a1,1,0,0,0,1,1h3a1,1,0,0,0,1-1V5.5a1,1,0,0,0-1-1H19.5a1,1,0,0,1-1-1V1A1,1,0,0,0,17.5,0Z"
+              />
+              <path
+                d="M62,13.5H60a1,1,0,0,1-1-1V10a1,1,0,0,0-1-1H55a1,1,0,0,0-1,1v2.5a1,1,0,0,1-1,1H51a1,1,0,0,1-1-1V1a1,1,0,0,0-1-1H46a1,1,0,0,0-1,1V13a1,1,0,0,0,1,1h2.5a1,1,0,0,1,1,1v2.5a1,1,0,0,0,1,1h3a1,1,0,0,0,1-1V15a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1v2.5a1,1,0,0,0,1,1h3a1,1,0,0,0,1-1V15a1,1,0,0,1,1-1H67a1,1,0,0,0,1-1V1a1,1,0,0,0-1-1H64a1,1,0,0,0-1,1V12.5A1,1,0,0,1,62,13.5Z"
+              />
+              <path
+                d="M28,9.5h3a1,1,0,0,0,1-1V6a1,1,0,0,1,1-1h7a1,1,0,0,0,1-1V1a1,1,0,0,0-1-1H28a1,1,0,0,0-1,1V8.5A1,1,0,0,0,28,9.5Z"
+              />
+              <path
+                d="M35,13.5H28a1,1,0,0,0-1,1v3a1,1,0,0,0,1,1H40a1,1,0,0,0,1-1V10a1,1,0,0,0-1-1H37a1,1,0,0,0-1,1v2.5A1,1,0,0,1,35,13.5Z"
+              />
+              <path
+                d="M99.5,3.5V1a1,1,0,0,0-1-1H91a1,1,0,0,0-1,1V17.5a1,1,0,0,0,1,1h3a1,1,0,0,0,1-1V6a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V17.5a1,1,0,0,0,1,1h3a1,1,0,0,0,1-1V5.5a1,1,0,0,0-1-1h-2.5A1,1,0,0,1,99.5,3.5Z"
+              />
+              <path
+                d="M73,9.5h3a1,1,0,0,0,1-1V6a1,1,0,0,1,1-1h7a1,1,0,0,0,1-1V1a1,1,0,0,0-1-1H73a1,1,0,0,0-1,1V8.5A1,1,0,0,0,73,9.5Z"
+              />
+              <path
+                d="M80,13.5H73a1,1,0,0,0-1,1v3a1,1,0,0,0,1,1H85a1,1,0,0,0,1-1V10a1,1,0,0,0-1-1H82a1,1,0,0,0-1,1v2.5A1,1,0,0,1,80,13.5Z"
+              />
+            </g>
+          </svg>
+          <hr />
           <h1>Marcus Wassén</h1>
-          <p id="bio">
-            I'm a 27 year old front-end developer with a soft spot for
-            generative design. Currently based in Gothenburg, Sweden. Did time
-            at Hyper Island.
-          </p>
+          <div id="about-me">
+            <p>
+              I'm a 27 year old front-end developer with a soft spot for
+              generative design. Currently based in Gothenburg, Sweden. Did time
+              at Hyper Island.
+            </p>
+          </div>
           <div id="personal-links">
             <a
               class="outbound-link"
@@ -60,7 +93,7 @@
             >
           </div>
         </div>
-        <hr />
+        <!-- <hr /> -->
         <div id="work">
           <h2>Selected Work</h2>
           <div class="work-project" onclick="window.open();">
@@ -68,6 +101,26 @@
               <div class="project-left">
                 <h3>Tape Fumes</h3>
                 <div class="frameworks">:: PixiJS, Tone ::</div>
+                <div class="github-container">
+                  <a
+                    href="https://github.com/mwassen/tapeloopdemo"
+                    target="_blank"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="github-link"
+                      viewBox="0 0 32.58 31.77"
+                    >
+                      <title>View on GitHub</title>
+                      <g>
+                        <path
+                          class="cls-1"
+                          d="M16.29,0a16.29,16.29,0,0,0-5.15,31.75c.82.15,1.11-.36,1.11-.79s0-1.41,0-2.77C7.7,29.18,6.74,26,6.74,26a4.36,4.36,0,0,0-1.81-2.39c-1.47-1,.12-1,.12-1a3.43,3.43,0,0,1,2.49,1.68,3.48,3.48,0,0,0,4.74,1.36,3.46,3.46,0,0,1,1-2.18c-3.62-.41-7.42-1.81-7.42-8a6.3,6.3,0,0,1,1.67-4.37,5.94,5.94,0,0,1,.16-4.31s1.37-.44,4.48,1.67a15.41,15.41,0,0,1,8.16,0c3.11-2.11,4.47-1.67,4.47-1.67A5.91,5.91,0,0,1,25,11.07a6.3,6.3,0,0,1,1.67,4.37c0,6.26-3.81,7.63-7.44,8a3.85,3.85,0,0,1,1.11,3c0,2.18,0,3.94,0,4.47s.29.94,1.12.78A16.29,16.29,0,0,0,16.29,0Z"
+                        />
+                      </g>
+                    </svg>
+                  </a>
+                </div>
               </div>
               <div class="project-right">
                 <p>
@@ -76,26 +129,6 @@
                   warm soundscapes to incapacitating noise.
                 </p>
               </div>
-              <div class="github-container">
-                <a
-                  href="https://github.com/mwassen/tapeloopdemo"
-                  target="_blank"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="github-link"
-                    viewBox="0 0 32.58 31.77"
-                  >
-                    <title>View on GitHub</title>
-                    <g>
-                      <path
-                        class="cls-1"
-                        d="M16.29,0a16.29,16.29,0,0,0-5.15,31.75c.82.15,1.11-.36,1.11-.79s0-1.41,0-2.77C7.7,29.18,6.74,26,6.74,26a4.36,4.36,0,0,0-1.81-2.39c-1.47-1,.12-1,.12-1a3.43,3.43,0,0,1,2.49,1.68,3.48,3.48,0,0,0,4.74,1.36,3.46,3.46,0,0,1,1-2.18c-3.62-.41-7.42-1.81-7.42-8a6.3,6.3,0,0,1,1.67-4.37,5.94,5.94,0,0,1,.16-4.31s1.37-.44,4.48,1.67a15.41,15.41,0,0,1,8.16,0c3.11-2.11,4.47-1.67,4.47-1.67A5.91,5.91,0,0,1,25,11.07a6.3,6.3,0,0,1,1.67,4.37c0,6.26-3.81,7.63-7.44,8a3.85,3.85,0,0,1,1.11,3c0,2.18,0,3.94,0,4.47s.29.94,1.12.78A16.29,16.29,0,0,0,16.29,0Z"
-                      />
-                    </g>
-                  </svg>
-                </a>
-              </div>
             </div>
           </div>
           <div class="work-project" onclick="window.open();">
@@ -103,6 +136,26 @@
               <div class="project-left">
                 <h3>Music Forecast</h3>
                 <div class="frameworks">:: React, D3, Node ::</div>
+                <div class="github-container">
+                  <a
+                    href="https://github.com/mwassen/music-forecast"
+                    target="_blank"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="github-link"
+                      viewBox="0 0 32.58 31.77"
+                    >
+                      <title>View on GitHub</title>
+                      <g>
+                        <path
+                          class="cls-1"
+                          d="M16.29,0a16.29,16.29,0,0,0-5.15,31.75c.82.15,1.11-.36,1.11-.79s0-1.41,0-2.77C7.7,29.18,6.74,26,6.74,26a4.36,4.36,0,0,0-1.81-2.39c-1.47-1,.12-1,.12-1a3.43,3.43,0,0,1,2.49,1.68,3.48,3.48,0,0,0,4.74,1.36,3.46,3.46,0,0,1,1-2.18c-3.62-.41-7.42-1.81-7.42-8a6.3,6.3,0,0,1,1.67-4.37,5.94,5.94,0,0,1,.16-4.31s1.37-.44,4.48,1.67a15.41,15.41,0,0,1,8.16,0c3.11-2.11,4.47-1.67,4.47-1.67A5.91,5.91,0,0,1,25,11.07a6.3,6.3,0,0,1,1.67,4.37c0,6.26-3.81,7.63-7.44,8a3.85,3.85,0,0,1,1.11,3c0,2.18,0,3.94,0,4.47s.29.94,1.12.78A16.29,16.29,0,0,0,16.29,0Z"
+                        />
+                      </g>
+                    </svg>
+                  </a>
+                </div>
               </div>
               <div class="project-right">
                 <p>
@@ -110,26 +163,6 @@
                   of music events in urban areas. Get a feel for the musical
                   climate of a city and scope out some shows.
                 </p>
-              </div>
-              <div class="github-container">
-                <a
-                  href="https://github.com/mwassen/music-forecast"
-                  target="_blank"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="github-link"
-                    viewBox="0 0 32.58 31.77"
-                  >
-                    <title>View on GitHub</title>
-                    <g>
-                      <path
-                        class="cls-1"
-                        d="M16.29,0a16.29,16.29,0,0,0-5.15,31.75c.82.15,1.11-.36,1.11-.79s0-1.41,0-2.77C7.7,29.18,6.74,26,6.74,26a4.36,4.36,0,0,0-1.81-2.39c-1.47-1,.12-1,.12-1a3.43,3.43,0,0,1,2.49,1.68,3.48,3.48,0,0,0,4.74,1.36,3.46,3.46,0,0,1,1-2.18c-3.62-.41-7.42-1.81-7.42-8a6.3,6.3,0,0,1,1.67-4.37,5.94,5.94,0,0,1,.16-4.31s1.37-.44,4.48,1.67a15.41,15.41,0,0,1,8.16,0c3.11-2.11,4.47-1.67,4.47-1.67A5.91,5.91,0,0,1,25,11.07a6.3,6.3,0,0,1,1.67,4.37c0,6.26-3.81,7.63-7.44,8a3.85,3.85,0,0,1,1.11,3c0,2.18,0,3.94,0,4.47s.29.94,1.12.78A16.29,16.29,0,0,0,16.29,0Z"
-                      />
-                    </g>
-                  </svg>
-                </a>
               </div>
             </div>
           </div>
