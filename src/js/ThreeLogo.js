@@ -196,6 +196,7 @@ const LogoBg = browserState => {
 
     // Initial glitch
     if (frame == 75) composer.passes[3].goWild = false;
+    if (frame == 100) composer.passes[3].enabled = false;
 
     // Shader time var
     shader.uniforms.time.value = frame / 10;
@@ -244,19 +245,6 @@ const LogoBg = browserState => {
     camera.zoom = 1 + yScrollPosition / 55.0;
 
     composer.passes[1].radius = 0.15 + yScrollPosition / 1500;
-
-    // Change logo glitching
-    if (
-      yScrollPosition > 0 &&
-      composer.passes[3].enabled &&
-      !composer.passes[3].goWild
-    ) {
-      composer.passes[3].enabled = false;
-      // } else if (yScrollPosition === 0) {
-      //   composer.passes[3].enabled = true;
-    } else if (yScrollPosition !== 0 && frame > 75) {
-      composer.passes[3].enabled = false;
-    }
 
     // Update cameras
     camera.lookAt(new Vector3());
