@@ -51,6 +51,10 @@ if (onMobile) {
   //   "140px 1fr";
 }
 
+// if (window.innerWidth < 100) {
+//   document.getElementById("job-title").style.visibility = "hidden";
+// }
+
 // THREE BACKGROUND
 const threeBackground = LogoBackground({
   width,

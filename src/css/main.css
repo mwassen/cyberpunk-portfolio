@@ -174,10 +174,15 @@ video {
 
 h1 {
   font-family: "Monda", sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   margin: 0px;
   margin-top: -3px;
   font-weight: 200;
+}
+
+#job-title {
+  display: inline;
+  opacity: 0.8;
 }
 
 h2 {
@@ -200,13 +205,13 @@ p {
 
 hr {
   grid-column: 1 / 3;
-  margin: 8px 0px 5px 0px;
+  margin: 5px 0px 6px 0px;
   border: 1px solid rgb(166, 166, 226);
 }
 
 #personal-links {
   grid-column: 1;
-  font-size: 12px;
+  font-size: 13px;
   width: 100%;
   display: flex;
   justify-content: space-between;
