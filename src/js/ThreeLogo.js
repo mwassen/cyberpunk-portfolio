@@ -298,12 +298,18 @@ const LogoBg = browserState => {
     }, 1000);
   };
 
+  const goWild = () => {
+    composer.passes[3].enabled = true;
+    composer.passes[3].goWild = true;
+  };
+
   return {
     domElement: renderer.domElement,
     resize,
     scroll,
     hoverIn,
-    hoverOut
+    hoverOut,
+    goWild
   };
 };
 

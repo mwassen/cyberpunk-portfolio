@@ -106,7 +106,14 @@ window.addEventListener("scroll", () => {
 projectDivs.forEach((project, ind) => {
   // Add links to project divs
   const url = ind === 0 ? "./tapefumes/" : "./musicforecast/";
-  project.onclick = () => window.open(url);
+  project.onclick = () => {
+    contentBg.style.opacity = 0;
+    writtenContent.style.opacity = 0;
+    threeBackground.goWild();
+    setTimeout(() => {
+      window.location = url;
+    }, 800);
+  };
 
   // Add github links & hover effects to projects on desktop
   if (!onMobile) {
