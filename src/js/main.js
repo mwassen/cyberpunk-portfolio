@@ -31,9 +31,6 @@ const onMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
   navigator.userAgent
 );
 
-// Reset scroll to top of page
-window.scrollTo(0, 0);
-
 // Avoid URL-bar blocking elements on mobile
 if (onMobile) {
   const mobileHeight = height + 56;
@@ -153,6 +150,6 @@ projectDivs.forEach((project, ind) => {
 });
 
 // Reset scroll location on page reload
-// window.onbeforeunload = () => {
-//   window.scrollTo(0, 0);
-// };
+window.onbeforeunload = () => {
+  window.scrollTo(0, 0);
+};
