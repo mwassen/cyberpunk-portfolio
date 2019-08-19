@@ -20,7 +20,7 @@ let height = window.innerHeight;
 const browserPixelRatio = window.devicePixelRatio;
 
 // element references
-const scrollSvg = document.getElementById("scroll-marker");
+// const scrollSvg = document.getElementById("scroll-indicator");
 const contentBg = document.getElementById("bg");
 const writtenContent = document.getElementById("main-container");
 const threeDiv = document.getElementById("three");
@@ -36,7 +36,7 @@ if (onMobile) {
   const mobileHeight = height + 56;
   height = mobileHeight;
   threeDiv.style.height = mobileHeight + "px";
-  scrollSvg.style.marginBottom = "75px";
+  // scrollSvg.style.marginBottom = "50px";
 
   // Reorganise and add desktop-only disclaimer to tape fumes
   document
@@ -66,9 +66,9 @@ const threeBackground = LogoBackground({
 threeDiv.appendChild(threeBackground.domElement);
 
 // Show scroll indicator
-setTimeout(() => {
-  if (window.scrollY === 0) scrollSvg.style.opacity = 1;
-}, 2500);
+// setTimeout(() => {
+//   if (window.scrollY === 0) scrollSvg.style.opacity = 1;
+// }, 2500);
 
 // EVENTS
 // Resize/reorient events
@@ -83,11 +83,11 @@ window.addEventListener("scroll", () => {
     threeBackground.scroll(window.scrollY);
 
     // Fade in/out scroll indicator
-    if (window.scrollY > 0) {
-      scrollSvg.style.opacity = 0;
-    } else if (window.scrollY === 0) {
-      scrollSvg.style.opacity = 1;
-    }
+    // if (window.scrollY > 0) {
+    //   scrollSvg.style.opacity = 0;
+    // } else if (window.scrollY === 0) {
+    //   scrollSvg.style.opacity = 1;
+    // }
 
     // Fade in/out written content
     if (window.scrollY > window.innerHeight / 2) {
