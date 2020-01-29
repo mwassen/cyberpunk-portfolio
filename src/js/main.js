@@ -109,7 +109,7 @@ window.addEventListener("scroll", () => {
 // Mouse effects for project Divs
 projectDivs.forEach((project, ind) => {
   // Add links to project divs
-  const url = ind === 0 ? "https://mwassen.github.io/tapefumes/" : "https://mwassen.github.io/music-forecast/";
+  const url = ind === 0 ? "https://mwassen.github.io/tapeloopdemo/" : "https://mwassen.github.io/music-forecast/";
   project.onclick = () => {
     contentBg.style.opacity = 0;
     writtenContent.style.opacity = 0;
