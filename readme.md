@@ -1,3 +1,5 @@
 # My Website
 
-Website to showcase my programming portfolio. Makes use of three.js and some custom shaders.
+This was my first portfolio website I used when looking for a front end position. It used THREE.js and some custom shaders.
+
+I've saved it here for future reference :)
