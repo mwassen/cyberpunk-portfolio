@@ -5,7 +5,8 @@
   "main": "src/js/main.js",
   "scripts": {
     "dev": "parcel src/index.html",
-    "prod": "parcel build src/index.html -d dist --public-url https://mwassen.github.io/first-portfolio/",
+    "prod": "parcel build src/index.html -d dist --public-url https://mwassen.github.io/cyberpunk-portfolio/",
+    "predeploy": "npm run prod",
     "deploy": "gh-pages -d dist",
     "glslify": "glslify src/shaders/fragment-pre.glsl -o src/shaders/fragment-desktop.glsl"
   },
